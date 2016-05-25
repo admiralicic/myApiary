@@ -4,21 +4,27 @@
     angular.module('apiaryApp').component('navigation', {
         templateUrl: 'components/navigation/navigation.component.html',
         controllerAs: 'vm',
-        controller: controller
+        controller: NavigationController
     });
 
-    controller.$inject = ['authentication']
-    function controller(authentication) {
+    NavigationController.$inject = ['authentication']
+    function NavigationController(authentication) {
         var vm = this;
+
+        vm.currentUser = {
+            email: '',
+            name: '',
+            password: ''
+        };
 
         vm.$onInit = function () {
             vm.isLoggedIn = authentication.isLoggedIn();
 
-            vm.currentUser = {
-                email: '',
-                name: '',
-                password: ''
-            };
+            if (vm.isLoggedIn) {
+                var currentUser = authentication.currentUser();
+                vm.currentUser.email = currentUser.email;
+                vm.currentUser.name = currentUser.firstName + ' ' + currentUser.lastName;
+            }
         };
 
         vm.login = function () {

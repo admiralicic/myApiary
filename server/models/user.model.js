@@ -29,7 +29,7 @@ userSchema.methods.generateJwt = function () {
         email: this.email,
         firstName: this.firstName,
         lastName: this.lastName,
-        exp: parseInt(expiry.getTime() / 100)
+        exp: parseInt(expiry.getTime() / 1000)
     }, process.env.JWT_SECRET);
 
     return token;

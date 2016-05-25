@@ -6,6 +6,8 @@
         $routeConfig: [
             { path: '/home', component: 'apiaryHome', name: 'Home' },
             { path: '/hives', component: 'apiaryHives', name: 'Hives' },
+            { path: '/register', component: 'registration', name: 'Register'},
+            { path: '/login', component: 'login', name: 'Login'},
             { path: '/**', redirectTo: ['Home'] }
         ]
     });

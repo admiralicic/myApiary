@@ -8,7 +8,7 @@ module.exports.login = function(req, res){
     }
 
     passport.authenticate('local', function (err, user, info) {
-        if (err) { return res.status(400).json(err); }
+        if (err) { return res.status(400).json({ message: err.errmsg }); }
 
         if (user) {
             var token = user.generateJwt();
@@ -33,8 +33,12 @@ module.exports.register = function(req, res){
   user.setPassword(req.body.password);
   
   user.save(function(err, user){
-      if (err){
-        return res.status(400).json(err);
+      if (err) {
+          if (err.code === 11000) {
+              return res.status(400).json({ message: 'User already exists' });
+          } else {
+              return res.status(400).json({ message: err.errmsg });
+          }
       }
       
       var token = user.generateJwt();
