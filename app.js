@@ -11,7 +11,7 @@ require('./server/models/db');
 require('./server/config/passport');
 
 var auth = require('./server/routes/auth');
-//var users = require('./routes/users');
+var hives = require('./server/routes/hives');
 
 var app = express();
 
@@ -28,8 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(passport.initialize());
 
-app.use('/', auth);
-//app.use('/users', users);
+app.use('/api/hives', hives);
+app.use('/api', auth);
 app.use(function (req, res) {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });

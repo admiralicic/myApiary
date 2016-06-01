@@ -32,13 +32,13 @@
         };
 
         function register(user) {
-            return $http.post('/register', user).then(function (response) {
+            return $http.post('/api/register', user).then(function (response) {
                 saveToken(response.data.token);
             });
         };
 
         function login(user) {
-            return $http.post('/login', user).then(function (response) {
+            return $http.post('/api/login', user).then(function (response) {
                 saveToken(response.data.token);
             });
         };

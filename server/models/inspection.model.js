@@ -7,7 +7,8 @@ var inspectionSchema = new mongoose.Schema({
     broodFrames: { type: Number },
     foodFrames: { type: Number },
     pollenFrames: { type: Number },
-    hive: { type: mongoose.Schema.Types.ObjectId, ref: 'Hive'}
+    hive: { type: mongoose.Schema.Types.ObjectId, ref: 'Hive'},
+    isDeleted: { type: Boolean, default: false }
 });
 
 mongoose.model('Inspection', inspectionSchema);
