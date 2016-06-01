@@ -3,8 +3,8 @@
 
     angular.module('apiaryApp').factory('authentication', authentication);
 
-    authentication.$inject = ['$http', '$window'];    
-    function authentication($http, $window) {
+    authentication.$inject = ['$http', '$window', '$location'];    
+    function authentication($http, $window, $location) {
         
         var service = {
             register: register,
@@ -28,6 +28,7 @@
 
         function logout() {
             $window.localStorage.removeItem('apiary-token');
+            $location.path('/home');
         };
 
         function register(user) {

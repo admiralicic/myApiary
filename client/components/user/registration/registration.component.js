@@ -15,6 +15,7 @@
         var vm = this;
 
         vm.formError = '';
+        vm.returnPage = '';
         
         vm.credentials = {
             email: '',
@@ -28,14 +29,18 @@
 
         };
 
-        vm.$routerOnActivate = function (next, previous) {
-
+        vm.$routerOnActivate = function (next, prev) {
+            vm.returnPage = prev.urlPath;
         };
 
         vm.onSubmit = function () {
             authentication.register(vm.credentials)
                 .then(function (response) {
-                    vm.$router.navigate(['Home']);
+                    if (vm.returnPage && vm.returnPage !== 'login') {
+                        vm.$router.navigateByUrl(vm.returnPage);
+                    } else {
+                        vm.$router.navigate(['Home']);
+                    }
                 })
                 .catch(function (err) {
                 vm.formError = err.data.message;

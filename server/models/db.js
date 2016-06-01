@@ -32,3 +32,6 @@ process.on('SIGINT', function(){
 
 
 require('./user.model.js');
+require('./hive.model.js');
+require('./inspection.model.js');
+require('./extraction.model.js');

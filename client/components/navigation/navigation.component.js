@@ -3,12 +3,15 @@
 
     angular.module('apiaryApp').component('navigation', {
         templateUrl: 'components/navigation/navigation.component.html',
+        // require: {
+        //     parent: '^apiaryHives'
+        // },
         controllerAs: 'vm',
         controller: NavigationController
     });
 
-    NavigationController.$inject = ['authentication']
-    function NavigationController(authentication) {
+    NavigationController.$inject = ['authentication', '$location']
+    function NavigationController(authentication, $location) {
         var vm = this;
 
         vm.currentUser = {
@@ -29,11 +32,10 @@
 
         vm.login = function () {
             vm.isLoggedIn = true;
-            vm.currentUser.email = 'admir.alicic@gmail.com';
-            vm.currentUser.password = 'test';
-            vm.currentUser.name = 'Admir Alicic';
 
-            authentication.login(vm.currentUser);
+            authentication.login(vm.currentUser).then(function () {
+                vm.isLoggedIn = authentication.isLoggedIn();
+            });
         };
 
         vm.logout = function () {
