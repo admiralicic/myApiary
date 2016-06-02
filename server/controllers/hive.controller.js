@@ -17,6 +17,7 @@ module.exports.list = function (req, res) {
         if (err) {
             return res.status(404).json(err);
         }
+        console.log(req.payload);
         res.status(200).json(hives);
     })
 };

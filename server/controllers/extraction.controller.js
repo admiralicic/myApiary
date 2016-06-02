@@ -30,7 +30,7 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.list = function (req, res) {
-    Extraction.find({ hive: req.hive._id }, function (err, extractions) {
+    Extraction.find({ hive: req.hive._id, isDeleted: false }, function (err, extractions) {
         if (err) {
             return res.status(400).json({ message: err.message });
         }
@@ -83,11 +83,3 @@ module.exports.delete = function (req, res) {
         });
     });
 };
-
-
-
-
-//   date: { type: String, required: true },
-//     type: { type: String, required: true },
-//     quantity: { type: Number, required: true },
-//     note: {type: String }
