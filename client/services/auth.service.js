@@ -40,6 +40,7 @@
         function login(user) {
             return $http.post('/api/login', user).then(function (response) {
                 saveToken(response.data.token);
+                //console.log('token saved');
             });
         };
 

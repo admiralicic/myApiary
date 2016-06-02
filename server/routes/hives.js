@@ -13,9 +13,9 @@ var extractionsCtrl = require('../controllers/extraction.controller');
 
 router.get('/', auth, hivesCtrl.list);
 router.post('/', auth, hivesCtrl.create);
-router.get('/:hiveId', hivesCtrl.read);
-router.put('/:hiveId', hivesCtrl.update);
-router.delete('/:hiveId', hivesCtrl.delete);
+router.get('/:hiveId',auth, hivesCtrl.read);
+router.put('/:hiveId',auth, hivesCtrl.update);
+router.delete('/:hiveId',auth, hivesCtrl.delete);
 
 router.get('/:hiveId/inspections',auth, inspectionsCtrl.list);
 router.post('/:hiveId/inspections',auth, inspectionsCtrl.create);

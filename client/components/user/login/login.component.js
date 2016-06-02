@@ -21,7 +21,9 @@
         vm.returnPage = '';
 
         vm.$routerOnActivate = function (next, prev) {
-            vm.returnPage = prev.urlPath;
+            if (prev) {
+                vm.returnPage = prev.urlPath;
+            }
         };
 
         vm.onSubmit = function () {
@@ -29,6 +31,7 @@
                 .then(function (response) {
 
                     if (vm.returnPage && vm.returnPage !== 'register') {
+                        //console.log('redirecting');
                         vm.$router.navigateByUrl(vm.returnPage);
                     } else {
                         vm.$router.navigate(['Home']);

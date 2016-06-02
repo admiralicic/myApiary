@@ -8,7 +8,8 @@ var hiveSchema = new mongoose.Schema({
     inspections: [{ type: ObjectId, ref: 'Inspection' }],
     extractions: [{ type: ObjectId, ref: 'Extraction' }],
     isDeleted: Boolean,
-    note: String
+    note: String,
+    owner: { type: ObjectId, ref: 'User' }
 });
 
 mongoose.model('Hive', hiveSchema);

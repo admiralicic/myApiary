@@ -1,0 +1,21 @@
+<navigation></navigation>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reg no</th>
+                <th>Location</th>
+                <th>Queen year</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="hive in vm.hives">
+                <td>{{ hive.regNo }}</td>
+                <td>{{ hive.location }}</td>
+                <td>{{ hive.queenYear }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
