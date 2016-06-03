@@ -11,15 +11,22 @@
     function HiveDetailController($uibModal, hiveService) {
         var vm = this;
         vm.hive = {};
-        
+
         vm.$routerOnActivate = function (next) {
-            hiveService.detail(next.params.hiveId).then(function (response) {
-                vm.hive = response.data;
-            });
+            hiveService.detail(next.params.hiveId)
+                .then(function (response) {
+                    console.log('success');
+                    vm.hive = response.data;
+                }).catch(function (response) {
+                    console.log('error');
+                });
+
+
+
         };
-        
+
         vm.$onInit = function () {
-            
+
         };
 
         vm.popupEditHive = function () {
@@ -47,5 +54,5 @@
         };
 
     };
-    
+
 })();

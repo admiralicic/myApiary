@@ -24,11 +24,12 @@
         };
 
         function responseError(response) {
-            if (response == 401) {
-                $location.path('/login');
 
-                return $q.reject(resonse);
+            if (response.status == 401) {
+                $location.path('/login');
             }
+            return $q.reject(response);
+
         };
     }
 })();

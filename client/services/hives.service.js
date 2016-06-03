@@ -18,10 +18,12 @@
 
         function list() {
             return $http.get('/api/hives');
+            
         };
 
         function detail(hiveId) {
             return $http.get('/api/hives/' + hiveId);
+                
         };
 
         function create(hive) {
@@ -30,6 +32,7 @@
 
         function update(hive) {
             return $http.put('/api/hives/' + hive.id, hive);
+                
         };
     }
 })();
