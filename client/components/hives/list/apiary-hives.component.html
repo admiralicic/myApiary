@@ -1,5 +1,6 @@
 <navigation></navigation>
 <div class="container">
+    <button class="btn btn-success" ng-click="vm.popupNewHive()">Add hive</button>
     <table class="table">
         <thead>
             <tr>
@@ -14,7 +15,11 @@
                 <td>{{ hive.regNo }}</td>
                 <td>{{ hive.location }}</td>
                 <td>{{ hive.queenYear }}</td>
-                <td></td>
+                <td>
+                    <button class="btn btn-default" ng-click="vm.showDetail(hive)">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

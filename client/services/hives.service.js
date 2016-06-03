@@ -3,23 +3,23 @@
 
     angular.module('apiaryApp').factory('hiveService', hivesService);
 
-    hivesService.$inject = ['$http', 'authentication'];    
+    hivesService.$inject = ['$http', 'authentication'];
     function hivesService($http, authentication) {
 
-        var head = {
-            headers: {
-                Authorization: 'Bearer ' + authentication.getToken()
-            }
-        }
 
         var service = {
-            list: list
+            list: list,
+            detail: detail
         };
 
         return service;
 
         function list() {
-            return $http.get('/api/hives', head);
-        }
+            return $http.get('/api/hives');
+        };
+
+        function detail(hiveId) {
+            return $http.get('/api/hives/' + hiveId);
+        };
     }
 })();

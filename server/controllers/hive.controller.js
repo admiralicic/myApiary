@@ -23,7 +23,7 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.list = function (req, res) {
-    Hive.find({ owner: req.payload._id }, function (err, hives) {
+    Hive.find({ owner: req.payload._id }).sort('regNo').exec(function (err, hives) {
         if (err) {
             return res.status(404).json(err);
         }

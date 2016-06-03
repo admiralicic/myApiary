@@ -10,8 +10,8 @@
         }
     });
 
-    HivesController.$inject = ['authentication', 'hiveService']
-    function HivesController(authentication, hiveService) {
+    HivesController.$inject = ['authentication', '$uibModal', 'hiveService']
+    function HivesController(authentication, $uibModal, hiveService) {
         var vm = this;
         vm.hives = [];
         vm.formError = '';
@@ -31,6 +31,18 @@
         };
 
         vm.$onChanges = function () {
+        };
+
+        vm.showDetail = function (hive) {
+            vm.$router.navigate(['HiveDetail', { hiveId: hive._id }]);
+        };
+
+        vm.popupNewHive = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'components/hives/modal/new-hive.modal.html',
+                controller: 'newHiveController',
+                controllerAs: 'vm'
+            });
         };
         
     };
