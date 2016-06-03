@@ -3,5 +3,8 @@
     <h4>{{ vm.hive.regNo }}</h4>
     <div>Queen year: {{ vm.hive.queenYear }}</div>
     <div>Location: {{ vm.hive.location }}</div>
-    <div>Note: {{ vm.hive.note }}</div>
+    Note:<div class="apiary-text-mulitiline">{{ vm.hive.note }}</div>
+    <div>
+        <button class="btn btn-success" ng-click="vm.popupEditHive()">Edit</button>
+    </div>
 </div>

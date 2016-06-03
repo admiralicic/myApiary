@@ -9,7 +9,9 @@
 
         var service = {
             list: list,
-            detail: detail
+            detail: detail,
+            create: create,
+            update: update
         };
 
         return service;
@@ -20,6 +22,14 @@
 
         function detail(hiveId) {
             return $http.get('/api/hives/' + hiveId);
+        };
+
+        function create(hive) {
+            return $http.post('/api/hives', hive);
+        };
+
+        function update(hive) {
+            return $http.put('/api/hives/' + hive.id, hive);
         };
     }
 })();

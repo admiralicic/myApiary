@@ -41,7 +41,12 @@
             var modalInstance = $uibModal.open({
                 templateUrl: 'components/hives/modal/new-hive.modal.html',
                 controller: 'newHiveController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                animation: true
+            });
+
+            modalInstance.result.then(function (data) {
+                vm.hives.push(data);
             });
         };
         

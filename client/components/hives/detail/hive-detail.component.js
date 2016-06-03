@@ -7,8 +7,8 @@
         controller: HiveDetailController
     });
 
-    HiveDetailController.$inject = ['hiveService'];
-    function HiveDetailController(hiveService) {
+    HiveDetailController.$inject = ['$uibModal', 'hiveService'];
+    function HiveDetailController($uibModal, hiveService) {
         var vm = this;
         vm.hive = {};
         
@@ -20,6 +20,30 @@
         
         vm.$onInit = function () {
             
+        };
+
+        vm.popupEditHive = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'components/hives/modal/edit-hive.modal.html',
+                controller: 'editHiveController',
+                controllerAs: 'vm',
+                resolve: {
+                    hiveData: function () {
+                        var hiveToUpdate = {
+                            _id: vm.hive._id,
+                            regNo: vm.hive.regNo,
+                            queenYear: vm.hive.queenYear,
+                            location: vm.hive.location,
+                            note: vm.hive.note
+                        };
+                        return hiveToUpdate;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (data) {
+                vm.hive = data;
+            });
         };
 
     };

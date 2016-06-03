@@ -43,7 +43,7 @@ module.exports.read = function (req, res) {
 module.exports.update = function (req, res) {
     var hive = req.hive;
 
-    hive.reqNo = req.body.regNo;
+    hive.regNo = req.body.regNo;
     hive.location = req.body.location;
     hive.queenYear = req.body.queenYear;
     hive.isDeleted = req.body.isDeleted;

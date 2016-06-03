@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('apiaryApp').controller('newHiveController', newHiveController);
+    angular.module('apiaryApp').controller('editHiveController', editHiveController);
 
-    newHiveController.$inject = ['$uibModalInstance', 'hiveService'];    
-    function newHiveController($uibModalInstance, hiveService) {
-        var vm = this;
-        vm.formData = {};
+    editHiveController.$inject = ['$uibModalInstance', 'hiveData', 'hiveService'];
+    function editHiveController($uibModalInstance, hiveData, hiveService) {
+        var vm = this;  
+        vm.formData = hiveData;
         
         vm.modal = {
             close: function (result) {
@@ -20,15 +20,16 @@
         vm.onSubmit = function () {
             vm.formError = '';
             if (!vm.formData.regNo || !vm.formData.queenYear || !vm.formData.location) {
-                vm.formError = 'All fields except \'note\' are required';
+                vm.formError = 'Some required fields are empty';
                 return false;
             } else {
-                vm.doAddHive(vm.formData);
+                vm.doUpdateHive(vm.formData);
             }
         };
 
-        vm.doAddHive = function (formData) {
-            hiveService.create({
+        vm.doUpdateHive = function (formData) {
+            hiveService.update({
+                id: hiveData._id,
                 regNo: formData.regNo,
                 queenYear: formData.queenYear,
                 location: formData.location,
@@ -36,11 +37,10 @@
             }).then(function (response) {
                 vm.modal.close(response.data);
             }, function (error) {
-                vm.formError = 'Hive has not been saved, please try again';
+                vm.formError = 'Data has not been saved, please try again';
             });
 
             return false;
         };
     };
-    
 })();
