@@ -4,7 +4,11 @@
     angular.module('apiaryApp').component('hiveDetail', {
         templateUrl: 'components/hives/detail/hive-detail.component.html',
         controllerAs: 'vm',
-        controller: HiveDetailController
+        controller: HiveDetailController,
+        $routeConfig: [
+            { path: '/inspections', component: 'inspectionList', name: 'Inspections'},
+            { path: '/extractions', component: 'extractionList', name: 'Extractions'}
+        ]
     });
 
     HiveDetailController.$inject = ['$uibModal', 'hiveService'];
@@ -15,13 +19,10 @@
         vm.$routerOnActivate = function (next) {
             hiveService.detail(next.params.hiveId)
                 .then(function (response) {
-                    console.log('success');
                     vm.hive = response.data;
                 }).catch(function (response) {
-                    console.log('error');
+                    console.log(response);
                 });
-
-
 
         };
 
@@ -34,6 +35,7 @@
                 templateUrl: 'components/hives/modal/edit-hive.modal.html',
                 controller: 'editHiveController',
                 controllerAs: 'vm',
+                windowClass: 'center-modal',
                 resolve: {
                     hiveData: function () {
                         var hiveToUpdate = {

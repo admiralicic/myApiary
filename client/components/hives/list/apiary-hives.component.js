@@ -17,24 +17,24 @@
         vm.formError = '';
         
         vm.$routerOnActivate = function (next, prev) {
-            vm.isLoggedIn = authentication.isLoggedIn();
+            // vm.isLoggedIn = authentication.isLoggedIn();
 
-            if (!vm.isLoggedIn) {
-                vm.$router.navigate(['Login']);
-            } else {
+            // if (!vm.isLoggedIn) {
+            //     vm.$router.navigate(['Login']);
+            // } else {
                 hiveService.list().then(function (result) {
                     vm.hives = result.data;
                 }, function (error) {
                     console.log(error);
                 });
-            }
+            // }
         };
 
         vm.$onChanges = function () {
         };
 
         vm.showDetail = function (hive) {
-            vm.$router.navigate(['HiveDetail', { hiveId: hive._id }]);
+            vm.$router.navigate(['HiveDetail', { hiveId: hive._id }, 'Inspections']);
         };
 
         vm.popupNewHive = function () {
@@ -42,7 +42,7 @@
                 templateUrl: 'components/hives/modal/new-hive.modal.html',
                 controller: 'newHiveController',
                 controllerAs: 'vm',
-                animation: true
+                windowClass: 'center-modal'
             });
 
             modalInstance.result.then(function (data) {
