@@ -1,1 +1,26 @@
-<h4>Inspection list comes here</h4>
+<h4>Inspections</h4>
+<table class="table" ng-show="vm.inspections.length > 0">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Brood frames</th>
+            <th class="text-center">Food frames</th>
+            <th class="text-center">Pollen frames</th>
+            <th>Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="inspection in vm.inspections">
+            <td>{{ inspection.date | date: medium }}</td>
+            <td>{{ inspection.description }}</td>
+            <td class="text-center">{{ inspection.type }}</td>
+            <td class="text-center">{{ inspection.broodFrames }}</td>
+            <td class="text-center">{{ inspection.foodFrames }}</td>
+            <td class="text-center">{{ inspection.pollenFrames }}</td>
+            <td>{{ inspection.note }}</td>
+        </tr>
+    </tbody>
+</table>
+<h5 ng-show="vm.inspections.length < 1">No inspections to show</h5>

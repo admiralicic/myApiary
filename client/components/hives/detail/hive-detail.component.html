@@ -1,19 +1,24 @@
 <navigation></navigation>
 <div class="container">
-    <div class="col-md-3">
-        <h4>{{ vm.hive.regNo }}</h4>
-        <div>Queen year: {{ vm.hive.queenYear }}</div>
-        <div>Location: {{ vm.hive.location }}</div>
-        Note:<div class="apiary-text-mulitiline">{{ vm.hive.note }}</div>
-        <div>
-            <button class="btn btn-success" ng-click="vm.popupEditHive()">Edit hive information</button>
+    <div class="row">
+            <h4 class="col-md-12">{{ vm.hive.regNo }}</h4>
+        <div class="col-md-3">
+            <div>Queen year: {{ vm.hive.queenYear }}</div>
+            <div>Location: {{ vm.hive.location }}</div>
         </div>
-        <div>
-             <a ng-link="['Inspections']">Inspections</a>
-             <a ng-link="['Extractions']">Extractions</a>
+        <div class="col-md-7">
+            Note:
+            <div class="apiary-text-mulitiline">{{ vm.hive.note }}</div>
         </div>
-    </div>
-    <div class="col-md-9">
-        <ng-outlet></ng-outlet>
+        <div class="col-md-2">
+            <button class="btn btn-success pull-right" ng-click="vm.popupEditHive()">Edit hive information</button>
+        </div>
+        <div class="col-md-12">
+            <a ng-link="['Inspections']">Inspections</a>
+            <a ng-link="['Extractions']">Extractions</a>
+        </div>
+        <div class="col-md-12">
+            <ng-outlet></ng-outlet>
+        </div>
     </div>
 </div>

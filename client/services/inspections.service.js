@@ -13,8 +13,8 @@
 
         return service;
 
-        function list() {
-            return $http.get('/hives/' + hiveId + '/inspections');
+        function list(hiveId) {
+            return $http.get('/api/hives/' + hiveId + '/inspections');
         };
     };
 })();

@@ -17,7 +17,8 @@
         vm.hive = {};
 
         vm.$routerOnActivate = function (next) {
-            hiveService.detail(next.params.hiveId)
+            vm.hiveId = next.params.hiveId;
+            hiveService.detail(vm.hiveId)
                 .then(function (response) {
                     vm.hive = response.data;
                 }).catch(function (response) {
@@ -27,7 +28,6 @@
         };
 
         vm.$onInit = function () {
-
         };
 
         vm.popupEditHive = function () {

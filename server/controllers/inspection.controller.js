@@ -13,7 +13,8 @@ module.exports.create = function (req, res) {
         broodFrames: req.body.broodFrames,
         foodFrames: req.body.foodFrames,
         pollenFrames: req.body.pollenFrames,
-        hive: hive._id
+        hive: hive._id,
+        note: req.body.note
     });
 
     newInspection.save(function (err, inspection) {
