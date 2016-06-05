@@ -5,6 +5,7 @@
 
     newHiveController.$inject = ['$uibModalInstance', 'hiveService'];    
     function newHiveController($uibModalInstance, hiveService) {
+        /*jshint validthis: true */
         var vm = this;
         vm.formData = {};
         
@@ -41,6 +42,6 @@
 
             return false;
         };
-    };
+    }
     
 })();

@@ -11,6 +11,6 @@
     function ExtractionListController() {
         var vm = this;
         
-    };
+    }
     
 })();

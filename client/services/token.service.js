@@ -11,20 +11,20 @@
             saveToken: saveToken,
             getToken: getToken,
             clearToken: clearToken
-        }
+        };
 
         return service;
 
         function saveToken(token) {
             $window.localStorage['apiary-token'] = token;
-        };
+        }
 
         function getToken() {
             return $window.localStorage['apiary-token'];
-        };
+        }
 
         function clearToken() {
             $window.localStorage.removeItem('apiary-token');
-        };
+        }
     }
 })();

@@ -5,7 +5,9 @@
 
     editHiveController.$inject = ['$uibModalInstance', 'hiveData', 'hiveService'];
     function editHiveController($uibModalInstance, hiveData, hiveService) {
+        /*jshint validthis: true */
         var vm = this;  
+
         vm.formData = hiveData;
         
         vm.modal = {
@@ -42,5 +44,5 @@
 
             return false;
         };
-    };
+    }
 })();

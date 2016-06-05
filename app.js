@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
+var environment = process.env.NODE_ENV;
+
 require('./server/models/db');
 require('./server/config/passport');
 
@@ -34,9 +36,11 @@ app.use(function (req, res) {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
+
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({ message: err.name + ' ' + err.message });
+    return;
   }
   next(err);
 });
@@ -59,6 +63,7 @@ if (app.get('env') === 'development') {
       message: err.message,
       error: err
     });
+    //return;
   });
 }
 
@@ -70,6 +75,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+  //return;
 });
 
 

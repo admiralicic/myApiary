@@ -20,5 +20,13 @@
     "angular-component-router": "^0.2.1",
     "bootstrap": "^3.3.6",
     "angular-animate": "^1.5.6"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
   }
 }

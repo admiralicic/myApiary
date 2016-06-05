@@ -14,7 +14,6 @@ passport.use(new LocalStrategy({ usernameField: 'email' },
             if (!user || !user.validPassword(password)) {
                 return done(null, false, { message: 'Invalid credentials' });
             }
-
             return done(null, user);
         });
     }

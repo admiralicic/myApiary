@@ -22,21 +22,21 @@ module.exports.create = function (req, res) {
     });
 };
 
+
 module.exports.list = function (req, res) {
     Hive.find({ owner: req.payload._id }).sort('regNo').exec(function (err, hives) {
         if (err) {
             return res.status(404).json(err);
         }
-        console.log(req.payload);
         res.status(200).json(hives);
-    })
+    });
 };
 
 module.exports.read = function (req, res) {
     if (req.payload._id == req.hive.owner) {
         return res.status(200).json(req.hive);
     } else {
-        res.status(400).json({ message: "Not found" });
+        res.status(400).json({ message: 'Not found' });
     }
 };
 

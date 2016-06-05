@@ -40,6 +40,6 @@
                 .catch(function (err) {
                     vm.formError = err.data.message;
                 });
-        }
+        };
     }
 })();

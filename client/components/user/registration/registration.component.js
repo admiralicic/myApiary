@@ -10,7 +10,7 @@
         }
     });
 
-    RegistrationController.$inject = ['authentication']    
+    RegistrationController.$inject = ['authentication'];    
     function RegistrationController(authentication) {
         var vm = this;
 

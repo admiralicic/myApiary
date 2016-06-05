@@ -10,7 +10,7 @@
         var interceptor = {
             request: request,
             responseError: responseError
-        }
+        };
 
         return interceptor;
 
@@ -21,15 +21,15 @@
             }
 
             return config;
-        };
+        }
 
         function responseError(response) {
 
-            if (response.status == 401) {
+            if (response.status === 401) {
                 $location.path('/login');
             }
             return $q.reject(response);
 
-        };
+        }
     }
 })();

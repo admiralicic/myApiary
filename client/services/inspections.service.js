@@ -15,6 +15,6 @@
 
         function list(hiveId) {
             return $http.get('/api/hives/' + hiveId + '/inspections');
-        };
-    };
+        }
+    }
 })();

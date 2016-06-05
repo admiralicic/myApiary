@@ -10,7 +10,7 @@
         }
     });
 
-    HivesController.$inject = ['authentication', '$uibModal', 'hiveService']
+    HivesController.$inject = ['authentication', '$uibModal', 'hiveService'];
     function HivesController(authentication, $uibModal, hiveService) {
         var vm = this;
         vm.hives = [];
@@ -50,5 +50,5 @@
             });
         };
         
-    };
+    }
 })();

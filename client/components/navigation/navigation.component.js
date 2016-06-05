@@ -10,7 +10,7 @@
         controller: NavigationController
     });
 
-    NavigationController.$inject = ['authentication', '$location']
+    NavigationController.$inject = ['authentication', '$location'];
     function NavigationController(authentication, $location) {
         var vm = this;
 
@@ -43,5 +43,5 @@
             vm.isLoggedIn = authentication.isLoggedIn();
         };
 
-    };
+    }
 })();

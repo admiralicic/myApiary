@@ -23,7 +23,7 @@ userSchema.methods.validPassword = function (password) {
 userSchema.methods.generateJwt = function () {
     var expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
-    
+
     var token = jwt.sign({
         _id: this._id,
         email: this.email,
@@ -33,6 +33,6 @@ userSchema.methods.generateJwt = function () {
     }, process.env.JWT_SECRET);
 
     return token;
-}
+};
 
 mongoose.model('User', userSchema);

@@ -30,20 +30,20 @@
             tokenService.clearToken();
            // $window.localStorage.removeItem('apiary-token');
             $location.path('/home');
-        };
+        }
 
         function register(user) {
             return $http.post('/api/register', user).then(function (response) {
                 tokenService.saveToken(response.data.token);
             });
-        };
+        }
 
         function login(user) {
             return $http.post('/api/login', user).then(function (response) {
                 tokenService.saveToken(response.data.token);
                 //console.log('token saved');
             });
-        };
+        }
 
         function isLoggedIn() {
             var token = tokenService.getToken();
@@ -54,7 +54,7 @@
             } else {
                 return false;
             }
-        };  
+        }  
 
         function currentUser() {
             if (isLoggedIn) {
@@ -66,6 +66,6 @@
                     lastName: payload.lastName
                 };
             }
-        };
-    };
+        }
+    }
 })();
