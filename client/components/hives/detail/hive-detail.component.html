@@ -5,6 +5,10 @@
         <div class="col-md-3">
             <div>Queen year: {{ vm.hive.queenYear }}</div>
             <div>Location: {{ vm.hive.location }}</div>
+            <div class="list-group">
+                <a class="list-group-item" ng-link="['Inspections']">Inspections</a>
+                <a class="list-group-item" ng-link="['Extractions']">Extractions</a>
+            </div>
         </div>
         <div class="col-md-7">
             Note:
@@ -12,10 +16,6 @@
         </div>
         <div class="col-md-2">
             <button class="btn btn-success pull-right" ng-click="vm.popupEditHive()">Edit hive information</button>
-        </div>
-        <div class="col-md-12">
-            <a ng-link="['Inspections']">Inspections</a>
-            <a ng-link="['Extractions']">Extractions</a>
         </div>
         <div class="col-md-12">
             <ng-outlet></ng-outlet>
