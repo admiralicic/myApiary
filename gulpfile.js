@@ -1,15 +1,14 @@
 var gulp = require('gulp');
 var args = require('yargs').argv;
+var browserSync = require('browser-sync');
 var config = require('./gulp.config')();
 var del = require('del');
 var $ = require('gulp-load-plugins')({ lazy: true });
 var port = process.env.PORT || config.defaultPort;
 
-// var jshint = require('gulp-jshint');
-// var jscs = require('gulp-jscs');
-// var util = require('gulp-util');
-// var gulpprint = require('gulp-print');
-// var gulpif = require('gulp-if');
+
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
 
 gulp.task('vet', function () {
     log('Analyzing source with JSHint and JSCS');
@@ -34,9 +33,38 @@ gulp.task('styles', ['clean-styles'], function () {
         .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('clean-styles', function () {
-    var files = config.temp + '**/*.css';
-    clean(files);
+gulp.task('fonts',['clean-fonts'], function () {
+    log('Copying fonts');
+    
+    return gulp.src(config.fonts)
+        .pipe(gulp.dest(config.build + 'fonts'));
+});
+
+gulp.task('images',['clean-images'], function () {
+    log('Copying and compressing images');
+
+    return gulp
+        .src(config.images)
+        .pipe($.imagemin({optimizationLevel: 4}))
+        .pipe(gulp.dest(config.build + 'images'));
+});
+
+gulp.task('clean', function (done) {
+    var delconfig = [].concat(config.build, config.temp);
+    log('Cleaning: ' + $.util.colors.blue(delconfig));
+    return del(delconfig);
+});
+
+gulp.task('clean-fonts', function (done) {
+    return clean(config.build + 'fonts/**/*.*');
+});
+
+gulp.task('clean-images', function (done) {
+    return clean(config.build + 'images/**/*.*');
+});
+
+gulp.task('clean-styles', function (done) {
+    return clean(config.temp + '**/*.css');
 });
 
 gulp.task('less-watcher', function () {
@@ -71,9 +99,14 @@ gulp.task('serve-dev', ['wiredep'], function () {
         .on('restart', function (ev) {
             log('*** nodemon restarted');
             log('files changed on restart: \n' + ev);
+            setTimeout(function () {
+                browserSync.notify('reloading now ...');
+                browserSync.reload({ stream: false });
+            }, config.browserReloadDelay);
         })
         .on('start', function () {
             log('*** nodemon started');
+            startBrowserSync();
         })
         .on('crash', function () {
             log('*** nodemon crashed: script crashed for some reason');
@@ -85,9 +118,37 @@ gulp.task('serve-dev', ['wiredep'], function () {
 
 //////////
 
+function startBrowserSync() {
+    if (browserSync.active) {
+        return;
+    }
+
+    log('Starting browser-sync on port ' + port);
+
+    var options = {
+        proxy: 'localhost:' + port,
+        port: 3000, 
+        files: [config.client + '**/*.*'],
+        gostMode: {
+            clicks: true,
+            location: false,
+            forms: true, 
+            scroll: true
+        },
+        injectChanges: true,
+        logFileChanges: true,
+        logLevel: 'debug',
+        logPrefix: 'gulp-patterns',
+        notify: true,
+        reloadDelay: 1000
+    }
+
+    browserSync(options);
+}
+
 function clean(path) {
     log('Cleaning: ' + $.util.colors.blue(path));
-    del(path);
+    return del(path);
 }
 
 function log(msg) {

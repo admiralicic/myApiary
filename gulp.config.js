@@ -10,10 +10,16 @@ module.exports = function () {
             './server/**/*.js',
             './*.js'
         ],
-
+        
+        build: './build/',
+        
         client: client,
         
         index: client + 'index.html',
+
+        fonts: client + 'bower_components/font-awesome/fonts/**/*.*',
+
+        images: client + 'images/**/*.*',
 
         js: [
             client + '*.js',
@@ -25,6 +31,8 @@ module.exports = function () {
 
         server: server,
 
+        browserReloadDelay: 1000,
+        
         bower: {
             json: require('./bower.json'),
             directory: client + 'bower_components/',

@@ -9,7 +9,7 @@ module.exports.login = function(req, res){
 
     passport.authenticate('local', function (err, user, info) {
         if (err) { return res.status(400).json({ message: err.errmsg }); }
-
+        
         if (user) {
             var token = user.generateJwt();
             return res.status(200).json({ token: token });
