@@ -19,17 +19,31 @@ module.exports = function () {
 
         fonts: client + 'bower_components/font-awesome/fonts/**/*.*',
 
+        htmltemplates: [
+            client + '**/*.html',
+            '!' + client + 'index*.html'
+        ],
+
         images: client + 'images/**/*.*',
 
         js: [
             client + '*.js',
             client + 'services/**/*.js',
-            client + 'components/**/*.js'
+            client + 'components/**/*.js',
+            client + 'core/**/*.js'
         ],
         
         less: client + '/stylesheets/styles.less',
 
         server: server,
+
+        templateCache: {
+            file: 'templates.js',
+            options: {
+                module: 'app.core',
+                standAlone: false
+            }  
+        },
 
         browserReloadDelay: 1000,
         
