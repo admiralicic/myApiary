@@ -1,42 +1,35 @@
 module.exports = function () {
     var client = './client/';
     var server = './server/';
+    var temp = './.tmp/';
     
     var config = {
-        temp: './.tmp/',
+        temp: temp,
+        css: temp + 'styles.css',
+        html: client + '**/*.html',
         // all js to vet
         alljs: [
             './client/**/*.js',
             './server/**/*.js',
             './*.js'
         ],
-        
         build: './build/',
-        
         client: client,
-        
         index: client + 'index.html',
-
         fonts: client + 'bower_components/font-awesome/fonts/**/*.*',
-
         htmltemplates: [
             client + '**/*.html',
-            '!' + client + 'index*.html'
+            '!' + client + 'index.html'
         ],
-
         images: client + 'images/**/*.*',
-
         js: [
             client + '*.js',
             client + 'services/**/*.js',
             client + 'components/**/*.js',
             client + 'core/**/*.js'
         ],
-        
-        less: client + '/stylesheets/styles.less',
-
+        less: client + 'stylesheets/styles.less',
         server: server,
-
         templateCache: {
             file: 'templates.js',
             options: {
@@ -44,16 +37,14 @@ module.exports = function () {
                 standAlone: false
             }  
         },
-
         browserReloadDelay: 1000,
-        
         bower: {
             json: require('./bower.json'),
             directory: client + 'bower_components/',
             ignorePath: '../..'
         },
 
-        defaultPort: 7203,
+        defaultPort: 7302,
         nodeServer: './bin/www'
     };
 

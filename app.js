@@ -28,9 +28,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//app.use(express.static(path.join(__dirname, 'client')));
-
-
 app.use(passport.initialize());
 
 app.use('/api/hives', hives);
@@ -45,14 +42,10 @@ switch (environment) {
   default:
     console.log('** DEV **');
     app.use(express.static(path.join(__dirname, 'client')));
-    app.use('/*', express.static(path.join(__dirname, 'client', 'index.html')));
+    app.use(express.static(path.join(__dirname, './')));
+    app.use('/', express.static(path.join(__dirname, 'client', 'index.html')));
     break;
 }
-
-// app.use(function (req, res) {
-//   res.sendFile(path.join(__dirname, 'client', 'index.html'));
-// });
-
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
