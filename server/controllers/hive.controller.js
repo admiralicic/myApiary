@@ -33,7 +33,7 @@ module.exports.list = function (req, res) {
 };
 
 module.exports.read = function (req, res) {
-    if (req.payload._id == req.hive.owner) {
+    if (req.payload._id === req.hive.owner.toString()) {
         return res.status(200).json(req.hive);
     } else {
         res.status(400).json({ message: 'Not found' });

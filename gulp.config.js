@@ -57,7 +57,7 @@ module.exports = function () {
         nodeServer: './bin/www'
     };
 
-    config.getWiredepDefaultOptions = function() {
+    config.getWiredepDefaultOptions = function () {
         var options = {
             bowerJson: config.bower.json,
             directory: config.bower.directory,
@@ -65,7 +65,7 @@ module.exports = function () {
         };
 
         return options;
-    }    
+    };
     
     return config;
 };

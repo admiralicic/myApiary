@@ -86,7 +86,7 @@ gulp.task('templatecache', ['clean-code'], function () {
             config.templateCache.file,
             config.templateCache.options))
         .pipe(gulp.dest(config.temp));
-})
+});
 
 gulp.task('less-watcher', function () {
     gulp.watch([config.less], ['styles']);
@@ -258,7 +258,7 @@ function startBrowserSync(isDev) {
         logPrefix: 'gulp-patterns',
         notify: true,
         reloadDelay: 0 //1000
-    }
+    };
 
     browserSync(options);
 }
