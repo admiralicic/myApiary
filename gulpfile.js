@@ -114,10 +114,14 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
         .pipe(gulp.dest(config.client));
 });
 
-gulp.task('optimize', ['inject'], function () {
+gulp.task('optimize', ['inject', 'fonts', 'images'], function () {
     log('Optimizing the javascript, css, html');
 
     var templateCache = config.temp + config.templateCache.file;
+    var cssFilter = $.filter('**/*.css', { restore: true });
+    var jsLibFilter = $.filter('**/' + config.optimized.lib, { restore: true });
+    var jsAppFilter = $.filter('**/' + config.optimized.app, { restore: true });
+    var indexHtmlFilter = $.filter(['**/*', '!**/index.html'], { restore: true });
 
     return gulp
         .src(config.index)
@@ -126,8 +130,49 @@ gulp.task('optimize', ['inject'], function () {
             starttag: '<!-- inject:templates:js -->'
         }))
         .pipe($.useref({ searchPath: ['', '.tmp', 'client'] }))
+        .pipe(cssFilter)
+        .pipe($.csso())
+        .pipe(cssFilter.restore)
+        .pipe(jsLibFilter)
+        .pipe($.uglify())
+        .pipe(jsLibFilter.restore)
+        .pipe(jsAppFilter)
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe(jsAppFilter.restore)
+        .pipe(indexHtmlFilter)
+        .pipe($.rev())
+        .pipe(indexHtmlFilter.restore)
+        .pipe($.revReplace())
         .pipe($.debug())
         .pipe(gulp.dest(config.build));
+});
+
+/**
+ *  Bump the version
+ *  --type=pre will bump the prerelase version *.*.*-x
+ *  --type=patch or no flag will bump the patch version *.*.x
+ *  --type=minor will bump the minor version *.x.*
+ *  --type=major will bump the major version x.*.*
+ *  --version=1.2.3 will bump to a specific version and ignore other flags
+ */
+gulp.task('bump', function () {
+    var msg = 'Bumping versions';
+    var type = args.type;
+    var version = args.version;
+    var options = {};
+    if (version) {
+        options.version = version;
+        msg += ' to ' + version;
+    } else {
+        options.type = type;
+        msg += ' for a ' + type;
+    }
+    log(msg);
+    return gulp
+        .src(config.packages)
+        .pipe($.bump(options))
+        .pipe(gulp.dest(config.root));
 });
 
 gulp.task('serve-build', ['optimize'], function () {
@@ -201,7 +246,7 @@ function startBrowserSync(isDev) {
             '!client/stylesheets/styles.less',
             config.temp + '**/*.css'
         ] : [],
-        gostMode: {
+        ghostMode: {
             clicks: true,
             location: false,
             forms: true,

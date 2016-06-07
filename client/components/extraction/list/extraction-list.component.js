@@ -7,7 +7,7 @@
         controllerAs: 'vm'
     });
     
-    ExtractionListController.$inject = [];
+    //ExtractionListController.$inject = [];
     function ExtractionListController() {
         var vm = this;
         
