@@ -2,40 +2,42 @@
 // Generated on Tue Jun 07 2016 17:58:45 GMT+0200 (CEST)
 
 module.exports = function (config) {
-  var gulpConfig = require('./gulp.config')();
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: './',
+    basePath: '',
+
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
+    frameworks: ['jasmine'],
+
+
     // list of files / patterns to load in the browser
-    files: gulpConfig.karma.files,
-    // files: [
+    files: [
       // 'client/bower_components/angular/angular.js',
       // 'client/bower_components/angular-mocks/angular-mocks.js',
       // 'client/bower_components/ng-describe/dist/ng-describe.js',
       // 'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       // 'client/bower_components/angular-animate/angular-animate.js',
       // 'client/bower_components/angular-component-router/angular_1_router.js',
-      // 'client/app.module.js',
+      // 'client/apiary-app.js',
       // 'client/core/**/*.js',
       // 'client/components/**/*.js',
       // 'client/services/**/*.js',
       // 'client/test/**/*.spec.js'
-    // ],
+    ],
+
 
     // list of files to exclude
-    exclude: gulpConfig.karma.exclude,
+    exclude: [
+    ],
 
-    proxies: {
-            '/': 'http://localhost:8888/'
-        },
-    
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    //preprocessors: gulpConfig.karma.preprocessors,
+    preprocessors: {
+    },
 
 
     // test results reporter to use
@@ -43,10 +45,7 @@ module.exports = function (config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
-    // coverageReporter: {
-    //   dir: gulpConfig.karma.coverage.dir,
-    //   reporters: gulpConfig.karma.coverage.reporters
-    // },  
+
     // web server port
     port: 9876,
 
