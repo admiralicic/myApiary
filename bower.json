@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.5",
+    "angular": "^1.5.6",
     "angular-component-router": "^0.2.1",
     "bootstrap": "^3.3.6",
     "angular-animate": "^1.5.6",
@@ -35,5 +35,9 @@
         "css/font-awesome.css"
       ]
     }
+  },
+  "devDependencies": {
+    "ng-describe": "^1.8.0",
+    "angular-mocks": "^1.5.6"
   }
 }
