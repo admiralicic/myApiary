@@ -129,6 +129,37 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function () {
     notify(msg);
 });
 
+gulp.task('serve-specs',['build-specs'], function (done) {
+    log('run the spec runner');
+    serve(true /* isDev */, true /* specRunner */);
+    done();
+});
+
+gulp.task('build-specs', ['templatecache'], function () {
+    log('building spec runner');
+
+    var wiredep = require('wiredep').stream;
+    var options = config.getWiredepDefaultOptions();
+    
+    options.devDependencies = true;
+
+    return gulp
+        .src(config.specRunner)
+        .pipe(wiredep(options))
+        .pipe($.inject(gulp.src(config.testlibraries, { read: false }),
+            { starttag: '<!-- inject:testlibraries:js -->' }))
+        .pipe($.inject(gulp.src(config.js)))
+        .pipe($.inject(gulp.src(config.specHelpers, { read: false}),
+            { starttag: '<!-- inject:spechelpers:js -->' }))
+        .pipe($.inject(gulp.src(config.specs, { read: false}),
+            { starttag: '<!-- inject:specs:js -->' }))
+        .pipe($.inject(gulp.src(config.temp + config.templateCache.file, { read: false }),
+            { starttag: '<!-- inject:templates:js -->' }))
+        .pipe(gulp.dest(config.client));
+    
+   
+});
+
 gulp.task('optimize', ['inject'/*, 'test' */], function () {
     log('Optimizing the javascript, css, html');
 
@@ -207,7 +238,7 @@ gulp.task('autotest', ['vet', 'templatecache'], function (done) {
 });
 //////////
 
-function serve(isDev) {
+function serve(isDev, specRunner) {
     var nodeOptions = {
         script: config.nodeServer,
         delayTime: 1,
@@ -229,7 +260,7 @@ function serve(isDev) {
         })
         .on('start', function () {
             log('*** nodemon started');
-            startBrowserSync(isDev);
+            startBrowserSync(isDev, specRunner);
         })
         .on('crash', function () {
             log('*** nodemon crashed: script crashed for some reason');
@@ -256,7 +287,7 @@ function notify(options) {
     notifier.notify(notifyOptions);
 }
 
-function startBrowserSync(isDev) {
+function startBrowserSync(isDev, specRunner) {
     if (browserSync.active) {
         return;
     }
@@ -292,6 +323,10 @@ function startBrowserSync(isDev) {
         notify: true,
         reloadDelay: 0 //1000
     };
+
+    if (specRunner) {
+        options.startPath = config.specRunnerFile;
+    }
 
     browserSync(options);
 }

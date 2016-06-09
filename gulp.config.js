@@ -5,6 +5,7 @@ module.exports = function () {
     var root = './';
     var report = './report/';
     var wiredep = require('wiredep');
+    var specRunnerFile = 'specs.html';
     var bowerFiles = wiredep({ devDependencies: true }).js.map(function (path) {
         return path.replace(__dirname + '/', '');
     });
@@ -59,6 +60,16 @@ module.exports = function () {
             './package.json'
             // './bower.json'
         ],
+
+        specRunner: client + specRunnerFile,
+        specRunnerFile: specRunnerFile,
+        testlibraries: [
+            'node_modules/mocha/mocha.js',
+            'node_modules/chai/chai.js',
+            'node_modules/mocha-clean/index.js',
+            'node_modules/sinon-chai/lib/sinon-chai.js'
+        ],
+        specs: [client + '**/*.spec.js'],
 
         specHelpers: [client + 'test-helpers/*.js'],
         defaultPort: 7302,
