@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="apiaryApp" ng-strict-di>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>My Apiary</title>
         
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400.500.700.400italic">
+
         <!-- build:css styles/lib.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+        <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
         <!-- endbower -->
         <!-- endbuild -->
         
@@ -17,8 +24,19 @@
         <!-- endinject -->
         <!-- endbuild -->
         
+        <style type="text/css">
+        [ng\:cloak],
+        [ng-cloak],
+        [data-ng-cloak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
     </head>
-    <body ng-cloak>
+    <body ng-cloak> 
         <apiary-root></apiary-root>
         
         <!-- build:js js/lib.js -->
@@ -33,6 +51,7 @@
         <script src="bower_components/angular-aria/angular-aria.js"></script>
         <script src="bower_components/angular-messages/angular-messages.js"></script>
         <script src="bower_components/angular-material/angular-material.js"></script>
+        <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         
@@ -50,9 +69,9 @@
         <script src="components/extraction/list/extraction-list.component.js"></script>
         <script src="components/hives/detail/hive-detail.component.js"></script>
         <script src="components/hives/list/apiary-hives.component.js"></script>
+        <script src="components/inspection/list/inspection-list.component.js"></script>
         <script src="components/hives/modal/edit-hive.modal.controller.js"></script>
         <script src="components/hives/modal/new-hive.modal.controller.js"></script>
-        <script src="components/inspection/list/inspection-list.component.js"></script>
         <script src="components/user/login/login.component.js"></script>
         <script src="components/user/registration/registration.component.js"></script>
         <script src="components/sample.factory.to.test.js"></script>

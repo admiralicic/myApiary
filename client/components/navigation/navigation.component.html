@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<!--<nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -25,4 +25,29 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav>-->
+<md-content>
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+          <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <h2>
+          <span>My Apiary</span>
+        </h2>
+        <span flex></span>
+        <h5 ng-show="vm.isLoggedIn">{{vm.currentUser.name }}</h5>
+        <md-button aria-label="Login" ng-if="!vm.isLoggedIn" ng-link="['Register']" >
+          Register
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Login" ng-if="!vm.isLoggedIn" ng-link="['Login']" >
+          <ng-md-icon icon="login" ></ng-md-icon>
+          <md-tooltip md-direction="left">Log in</md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Logout" ng-if="vm.isLoggedIn" ng-click="vm.logout()">
+          <ng-md-icon icon="logout"></ng-md-icon>
+          <md-tooltip md-direction="left">Log out</md-tooltip>
+        </md-button>
+      </div>
+    </md-toolbar>
+</md-content>

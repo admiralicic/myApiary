@@ -30,7 +30,7 @@
         };
 
         vm.$routerOnActivate = function (next, prev) {
-            vm.returnPage = prev.urlPath;
+            // vm.returnPage = prev.urlPath;
         };
 
         vm.onSubmit = function () {

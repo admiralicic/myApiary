@@ -1,22 +1,27 @@
 <navigation></navigation>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <p class="lead">Not a member? Please <a ng-link="['Register']">register</a> first</p>
-            <form ng-submit="vm.onSubmit()">
-                <div role="alert" class="alert alert-danger" ng-show="vm.formError">{{ vm.formError }}</div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" 
-                        ng-model="vm.credentials.email">
+<div layout="column" layout-align="center center" >
+    <div class="loginBox md-whiteframe-z1" layout="column">
+        <md-toolbar class="md-hue-2">
+            <h2 class="md-toolbar-tools">
+                <span>Login</span>
+            </h2>
+        </md-toolbar>
+        <md-content class="md-padding" layout="column" >
+            <div role="alert" class="alert alert-danger" ng-show="vm.formError">{{ vm.formError }}</div>
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" ng-model="vm.credentials.email">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="vm.credentials.password">
+            </md-input-container>
+            <div layout="row" layout-align="center center" style="padding-top: 20px;">
+                <md-button class="md-raised md-primary" ng-click="vm.onSubmit()">Login</md-button>
+                <div flex>
+                    <md-button ng-link="['Register']">Register</md-button>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" 
-                        ng-model="vm.credentials.password">
-                </div>
-                <button class="btn btn-default" type="submit">Sign in!</button>
-            </form>
-        </div>
+            </div>
+        </md-content>
     </div>
 </div>

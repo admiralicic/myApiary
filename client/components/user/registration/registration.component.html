@@ -1,5 +1,4 @@
-<navigation></navigation>
-<div class="container">
+<!--<div class="container">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <p class="lead">Already a member? Please <a ng-link="['Login']">log in</a></p>
@@ -29,4 +28,57 @@
             </form>
         </div>
     </div>
-</div>
+</div>-->
+
+<navigation></navigation>
+<div layout="column" layout-align="center center">
+    <div class="loginBox md-whiteframe-z1" layout="column">
+        <md-toolbar class="md-hue-2">
+            <h2 class="md-toolbar-tools">
+                Registration
+            </h2>
+        </md-toolbar>
+    <form name="registerForm" ng-submit="vm.onSubmit()">
+        <md-content class="md-padding" layout="column">
+        <h4>
+            <span>Already a member? please <a ng-link="['Login']"><em>log in</em></a></span>
+        </h4>
+            <div role="alert" class="alert alert-danger" ng-show="vm.formError">{{ vm.formError }}</div>
+            <md-input-container>
+                <label>First name</label>
+                <input type="text" ng-model="vm.credentials.firstName" name="firstName" required>
+                <div ng-messages="registerForm.firstName.$error">
+                    <div ng-message="required">This is required</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Last name</label>
+                <input type="text" ng-model="vm.credentials.lastName" name="lastName" required>
+                <div ng-messages="registerForm.lastName.$error">
+                    <div ng-message="required">This is required</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" ng-model="vm.credentials.email" name="email" required>
+                <div ng-messages="registerForm.email.$error">
+                    <div ng-message="required">This is required</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="vm.credentials.password" name="password" required>
+                <div ng-messages="registerForm.password.$error">
+                    <div ng-message="required">This is required</div>
+                </div>
+            </md-input-container>
+            <div layout="row" layout-align="center center">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="registerForm.$invalid">Register</md-button>
+                <div flex>
+
+                </div>
+            </div>
+        </md-content>
+        </form>
+        </div>
+        </div>

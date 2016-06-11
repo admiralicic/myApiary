@@ -29,7 +29,7 @@
         function logout() {
             tokenService.clearToken();
            // $window.localStorage.removeItem('apiary-token');
-            $location.path('/home');
+            $location.path('/login');
         }
 
         function register(user) {

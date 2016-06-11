@@ -34,7 +34,7 @@
                         //console.log('redirecting');
                         vm.$router.navigateByUrl(vm.returnPage);
                     } else {
-                        vm.$router.navigate(['Home']);
+                        vm.$router.navigate(['Hives']);
                     }
                 })
                 .catch(function (err) {

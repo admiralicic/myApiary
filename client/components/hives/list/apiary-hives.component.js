@@ -17,17 +17,18 @@
         vm.formError = '';
         
         vm.$routerOnActivate = function (next, prev) {
-            // vm.isLoggedIn = authentication.isLoggedIn();
+            vm.isLoggedIn = authentication.isLoggedIn();
+            console.log(vm.isLoggedIn);
 
-            // if (!vm.isLoggedIn) {
-            //     vm.$router.navigate(['Login']);
-            // } else {
+            if (!vm.isLoggedIn) {
+                vm.$router.navigate(['Login']);
+            } else {
                 hiveService.list().then(function (result) {
                     vm.hives = result.data;
                 }, function (error) {
                     console.log(error);
                 });
-            // }
+            }
         };
 
         vm.$onChanges = function () {
