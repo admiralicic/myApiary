@@ -18,7 +18,6 @@
         
         vm.$routerOnActivate = function (next, prev) {
             vm.isLoggedIn = authentication.isLoggedIn();
-            console.log(vm.isLoggedIn);
 
             if (!vm.isLoggedIn) {
                 vm.$router.navigate(['Login']);

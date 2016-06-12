@@ -23,11 +23,6 @@
             lastName: '',
             password: ''
         };
-        
-        vm.$onInit = function () {
-            // vm.formError = 'Just testing error notification!';
-
-        };
 
         vm.$routerOnActivate = function (next, prev) {
             // vm.returnPage = prev.urlPath;
@@ -36,11 +31,11 @@
         vm.onSubmit = function () {
             authentication.register(vm.credentials)
                 .then(function (response) {
-                    if (vm.returnPage && vm.returnPage !== 'login') {
-                        vm.$router.navigateByUrl(vm.returnPage);
-                    } else {
-                        vm.$router.navigate(['Home']);
-                    }
+                    // if (vm.returnPage && vm.returnPage !== 'login') {
+                    //     vm.$router.navigateByUrl(vm.returnPage);
+                    // } else {
+                        vm.$router.navigate(['Hives']);
+                    // }
                 })
                 .catch(function (err) {
                 vm.formError = err.data.message;

@@ -1,0 +1,37 @@
+<md-sidenav class="md-sidenav-left" 
+    md-component-id="left" 
+    md-is-locked-open="$mdMedia('gt-sm')" 
+    md-disable-backdrop 
+    md-whiteframe="4">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Hives</h1>
+    </md-toolbar>
+    <div class="left-sidenav-search-box">
+        <md-autocomplete 
+            md-search-text="vm.searchText"
+            md-items="hive in vm.hives | filter: vm.searchText"
+            md-item-text="hive.regNo"
+            md-min-length="3"
+            placeholder="filter">
+            <md-item-template>
+                <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{hive.regNo}}</span>
+            </md-item-template>
+            <md-not-found>
+                No hive matching "{{vm.searchText}}" were found.
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+    <md-content class="scrollable-nav-content">
+        <md-list>
+            <md-list-item ng-repeat="hive in vm.hives | filter: vm.searchText | orderBy: 'regNo'"> 
+                <md-button ng-click="vm.selectedHive(hive)" ng-class="{'selected': hive === vm.selected }">
+                    {{hive.regNo}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-content>
+    <md-button class="md-fab md-fab-bottom-right">
+        <ng-md-icon icon="add" ></ng-md-icon>
+    </md-button>
+</md-sidenav>
+

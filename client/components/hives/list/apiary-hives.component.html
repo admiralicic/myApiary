@@ -1,5 +1,4 @@
-<navigation></navigation>
-<div class="container">
+<!--<div class="container">
     <button class="btn btn-success" ng-click="vm.popupNewHive()">Add hive</button>
     <table class="table">
         <thead>
@@ -23,4 +22,30 @@
             </tr>
         </tbody>
     </table>
+</div>-->
+
+<!--<div layout="row">
+    <div layout="vertical">
+        <hives-sidenav hives="vm.hives"></hives-sidenav>
+    </div>
+    <div layout="column" flex id="wrapper">
+        <navigation></navigation>
+
+        <md-content flex id="content">
+            
+        </md-content>
+    </div>
+
+</div>-->
+
+
+<div layout="row" flex layout-fill>
+    <hives-sidenav layout="vertical" hives="vm.hives"></hives-sidenav>
+
+    <div layout="column" flex id="wrapper">
+        <navigation></navigation>
+        <md-content flex id="content">
+           
+        </md-content>
+    </div>
 </div>

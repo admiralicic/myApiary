@@ -30,12 +30,13 @@
             authentication.login(vm.credentials)
                 .then(function (response) {
 
-                    if (vm.returnPage && vm.returnPage !== 'register') {
-                        //console.log('redirecting');
-                        vm.$router.navigateByUrl(vm.returnPage);
-                    } else {
-                        vm.$router.navigate(['Hives']);
-                    }
+                    // if (vm.returnPage && vm.returnPage !== 'register') {
+                    //     vm.$router.navigateByUrl(vm.returnPage);
+                    // } else {
+                    // $rootScope.$broadcast('login');
+                    vm.$router.navigate(['Hives']);
+                    
+                    // }
                 })
                 .catch(function (err) {
                     vm.formError = err.data.message;
