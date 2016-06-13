@@ -1,8 +1,11 @@
 <div layout="row" flex layout-fill>
-    <hives-sidenav layout="vertical" 
-                    hives="vm.hives" 
-                    select="vm.select(value)" 
-                     selected="vm.selected"></hives-sidenav>
+    <div layout="vertical">
+        <hives-sidenav layout="vertical" 
+                        hives="vm.hives" 
+                        select="vm.select(value)" 
+                        selected="vm.selected"></hives-sidenav>
+        
+    </div>
 
      <div layout="column" flex id="wrapper">
         <navigation></navigation>
