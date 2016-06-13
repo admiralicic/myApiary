@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-var dbUri = 'mongodb://localhost/myapiary';
 var gracefulShutdown;
+
+var dbUri = 'mongodb://localhost/myapiary';
+if (process.env.NODE_ENV === 'production') {
+    dbUri = process.env.MONGOLAB_URI;
+}
 
 mongoose.connect(dbUri);
 
@@ -26,6 +30,12 @@ gracefulShutdown = function(msg, callback){
 
 process.on('SIGINT', function(){
     gracefulShutdown('application shutdown', function(){
+        process.exit(0);
+    });
+});
+
+process.on('SIGTERM', function () {
+    gracefulShutdown('Heroku app shutdown', function () {
         process.exit(0);
     });
 });
