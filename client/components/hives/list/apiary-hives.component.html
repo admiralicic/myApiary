@@ -1,14 +1,24 @@
 <div layout="row" flex layout-fill>
-    <hives-sidenav layout="vertical" hives="vm.hives" select="vm.select(value)" 
-        selected="vm.selected"></hives-sidenav>
+    <hives-sidenav layout="vertical" 
+                    hives="vm.hives" 
+                    select="vm.select(value)" 
+                     selected="vm.selected"></hives-sidenav>
 
-    <div layout="column" flex id="wrapper">
+     <div layout="column" flex id="wrapper">
         <navigation></navigation>
-        <!--<md-content flex id="content">
-           <h2>{{vm.selected.regNo}}</h2>
-           <h4>Location: {{vm.selected.location}}</h4>
-           <h4>Queen year: {{vm.selected.queenYear}}</h4>
-        </md-content>-->
+        <md-content flex id="content">
         <hive-detail hive="vm.selected"></hive-detail>
+            <md-tabs md-dynamic-height="" md-stretch-tabs="always">
+                <md-tab label="Inspections">
+                    <inspection-list inspections="vm.inspections"></inspection-list>
+                </md-tab>
+                <md-tab label="Extractions">
+                    Extractions list component goes here
+                </md-tab>
+                <md-tab label="Notes">
+                    Notes go here
+                </md-tab>
+            </md-tabs>
+        </md-content>
     </div>
 </div>

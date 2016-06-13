@@ -10,11 +10,11 @@
         }
     });
 
-    HivesController.$inject = ['authentication', '$uibModal', 'hiveService'];
-    function HivesController(authentication, $uibModal, hiveService) {
+    HivesController.$inject = ['$mdSidenav', 'authentication', 'hiveService', 'inspectionService'];
+    function HivesController($mdSidenav, authentication, hiveService, inspectionService) {
         var vm = this;
         vm.hives = [];
-        vm.selected = undefined;
+        vm.inspections = [];
         vm.formError = '';
         
         vm.$routerOnActivate = function (next, prev) {
@@ -32,29 +32,16 @@
             }
         };
 
-        vm.$onChanges = function () {
-        };
-
-        vm.showDetail = function (hive) {
-            vm.$router.navigate(['HiveDetail', { hiveId: hive._id }, 'Inspections']);
-        };
-
-        vm.popupNewHive = function () {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'components/hives/modal/new-hive.modal.html',
-                controller: 'newHiveController',
-                controllerAs: 'vm',
-                windowClass: 'center-modal'
-            });
-
-            modalInstance.result.then(function (data) {
-                vm.hives.push(data);
-            });
-        };
-
         vm.select = function (value) {
             vm.selected = value;
+            inspectionService.list(vm.selected._id).then(function (response) {
+                vm.inspections = response.data;
+            });
+            var sidenav = $mdSidenav('left');
+            if (sidenav.isOpen()) {
+                sidenav.close();
+            }
         }
-        
+
     }
 })();
