@@ -1,5 +1,5 @@
 <!--<navigation></navigation>-->
-<div class="container">
+<!--<div class="container">
     <div class="row">
             <h4 class="col-md-12">{{ vm.hive.regNo }}</h4>
         <div class="col-md-3">
@@ -21,4 +21,29 @@
             <ng-outlet></ng-outlet>
         </div>
     </div>
-</div>
+</div>-->
+
+<!--<div layout="row" flex layout-fill>
+    <hives-sidenav layout="vertical" hives="vm.hives" select="vm.select(value)" 
+        selected="vm.selected"></hives-sidenav>-->
+
+    <!--<div layout="column" flex id="wrapper">
+        <navigation></navigation>-->
+        <md-content flex id="content" layout="column">
+            <div layout="row">
+                <h2>{{vm.hive.regNo}}</h2>
+            </div>
+            <div layout="column">
+                <div layout-gt-sm="row">
+                    <div layout="column" flex="30">
+                        <p class="md-body-1"><strong>Location:</strong> {{vm.hive.location}}</p>
+                        <p class="md-body-1"><strong>Queen year:</strong> {{vm.hive.queenYear}}</p>
+                    </div>
+                    <div flex layout="row">
+                        <p class="md-body-1 apiary-text-multiline" ><strong>Note: </strong> {{vm.hive.note}}</p>
+                    </div>
+                </div>
+            </div> 
+        </md-content>
+    <!--</div>-->
+<!--</div>-->

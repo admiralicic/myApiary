@@ -14,16 +14,18 @@
     function HivesController(authentication, $uibModal, hiveService) {
         var vm = this;
         vm.hives = [];
+        vm.selected = undefined;
         vm.formError = '';
         
         vm.$routerOnActivate = function (next, prev) {
             vm.isLoggedIn = authentication.isLoggedIn();
 
             if (!vm.isLoggedIn) {
-                vm.$router.navigate(['Login']);
+                vm.$router.navigate(['Home']);
             } else {
                 hiveService.list().then(function (result) {
                     vm.hives = result.data;
+                    vm.selected = vm.hives[0];
                 }, function (error) {
                     console.log(error);
                 });
@@ -49,6 +51,10 @@
                 vm.hives.push(data);
             });
         };
+
+        vm.select = function (value) {
+            vm.selected = value;
+        }
         
     }
 })();

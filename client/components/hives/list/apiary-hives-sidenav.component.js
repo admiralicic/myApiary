@@ -6,10 +6,9 @@
         controller: HiveSidenavController,
         controllerAs: 'vm',
         bindings: {
-            hives: '<'
-        },
-        require: {
-            parent: 'apiaryHives'
+            hives: '<',
+            selected: '<',
+            select: '&'
         }
     });
 

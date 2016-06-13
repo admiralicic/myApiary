@@ -24,13 +24,13 @@
     <md-content class="scrollable-nav-content">
         <md-list>
             <md-list-item ng-repeat="hive in vm.hives | filter: vm.searchText | orderBy: 'regNo'"> 
-                <md-button ng-click="vm.selectedHive(hive)" ng-class="{'selected': hive === vm.selected }">
+                <md-button ng-click="vm.select({value: hive})" ng-class="{'selected': hive === vm.selected }">
                     {{hive.regNo}}
                 </md-button>
             </md-list-item>
         </md-list>
     </md-content>
-    <md-button class="md-fab md-fab-bottom-right">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add hive">
         <ng-md-icon icon="add" ></ng-md-icon>
     </md-button>
 </md-sidenav>
