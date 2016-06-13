@@ -34,7 +34,8 @@ app.use('/api/hives', hives);
 app.use('/api', auth);
 
 switch (environment) {
-  case 'build':
+  // case 'build':
+ case 'production':
     console.log(('** BUILD **'));
     app.use(express.static(path.join(__dirname, 'build')));
     app.use('/*', express.static(path.join(__dirname, 'build', 'index.html')));
