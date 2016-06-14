@@ -1,4 +1,53 @@
-<div class="modal-content">
+<md-dialog>
+    <form name="hiveForm" ng-submit="vm.save()">
+        <md-dialog-content>
+            <div layout="column" layout-padding>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Reg No</label>
+                        <input ng-model="vm.hive.regNo" name="regNo" required>
+                        <div ng-messages="hiveForm.regNo.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Location</label>
+                        <input ng-model="vm.hive.location" name="location" required>
+                        <div ng-messages="hiveForm.location.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Queen year</label>
+                        <input ng-model="vm.hive.queenYear" name="queenYear" required>
+                        <div ng-messages="hiveForm.queenYear.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                    <md-input-container class="md-block" flex>
+                        <label>Note</label>
+                        <textarea name="note" ng-model="vm.hive.note" rows="5" required></textarea>
+                        <div ng-messages="hiveForm.note.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.cancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="vm.save()" class="md-primary md-raised" ng-disabled="hiveForm.$invalid">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+
+
+<!--<div class="modal-content">
     <form id="addHive" name="addHive" role="form" class="form-horizontal" ng-submit="vm.onSubmit()">
         <div class="modal-header">
             <button type="button" ng-click="vm.modal.cancel()" class="close">
@@ -46,4 +95,4 @@
             <button type="submit" class="btn btn-primary">Create hive</button>
         </div>
     </form>
-</div>
+</div>-->

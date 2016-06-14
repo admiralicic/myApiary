@@ -10,8 +10,14 @@
         }
     });
 
-    HivesController.$inject = ['$mdSidenav', 'authentication', 'hiveService', 'inspectionService'];
-    function HivesController($mdSidenav, authentication, hiveService, inspectionService) {
+    HivesController.$inject = [
+        '$mdSidenav',
+        '$mdMedia',
+        '$mdDialog',
+        'authentication',
+        'hiveService',
+        'inspectionService'];
+    function HivesController($mdSidenav, $mdMedia, $mdDialog, authentication, hiveService, inspectionService) {
         var vm = this;
         vm.hives = [];
         vm.inspections = [];
@@ -41,6 +47,26 @@
             if (sidenav.isOpen()) {
                 sidenav.close();
             }
+        }
+
+        vm.addHive = function ($event) {
+            var fullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+
+            $mdDialog.show({
+                templateUrl: 'components/hives/modal/new-hive.modal.html',
+                parent: angular.element(document.body),
+                tergetEvents: $event,
+                controller: 'NewHiveController',
+                controllerAs: 'vm',
+                clickOutsideToClose: true,
+                fullscreen: fullScreen,
+            }).then(function (hive) {
+                //call hiveService and add hive
+                vm.hives.push(hive);
+                vm.select(hive);
+            }, function () {
+                console.log('Cancelled');
+            });
         }
 
     }

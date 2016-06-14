@@ -9,17 +9,12 @@
 
      <div layout="column" flex id="wrapper">
         <navigation></navigation>
+        <hive-detail hive="vm.selected" layout-padding></hive-detail>
         <md-content flex id="content">
-        <hive-detail hive="vm.selected"></hive-detail>
             <md-tabs md-dynamic-height="" md-stretch-tabs="always">
-                <md-tab label="Inspections">
                     <inspection-list inspections="vm.inspections"></inspection-list>
-                </md-tab>
                 <md-tab label="Extractions">
                     Extractions list component goes here
-                </md-tab>
-                <md-tab label="Notes">
-                    Notes go here
                 </md-tab>
             </md-tabs>
         </md-content>

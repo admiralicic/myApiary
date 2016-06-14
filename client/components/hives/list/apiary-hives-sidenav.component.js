@@ -9,6 +9,9 @@
             hives: '<',
             selected: '<',
             select: '&'
+        },
+        require: {
+            parent: '^apiaryHives'
         }
     });
 
@@ -17,5 +20,6 @@
         var vm = this;
         
         vm.searchText = '';
+
     };
 })();
