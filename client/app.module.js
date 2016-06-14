@@ -7,7 +7,6 @@
         'ngMaterial',
         'ngMdIcons',
 
-        'ui.bootstrap',
         'app.core'])
         
         

@@ -39,6 +39,7 @@
                     // }
                 })
                 .catch(function (err) {
+                    vm.credentials = {};
                     vm.formError = err.data.message;
                 });
         };

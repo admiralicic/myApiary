@@ -45,28 +45,34 @@
             if (sidenav.isOpen()) {
                 sidenav.close();
             }
-        }
+        };
 
-        vm.addHive = function ($event) {
+        vm.openHiveDialog = function ($event, mode /** add or edit */) {
             var fullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 
+            var locals = {};
+            if (mode === 'edit') { locals = vm.selected; }
+            
             $mdDialog.show({
-                templateUrl: 'components/hives/modal/new-hive.modal.html',
+                templateUrl: 'components/hives/modal/hive.modal.html',
                 parent: angular.element(document.body),
                 tergetEvents: $event,
                 controller: 'NewHiveController',
                 controllerAs: 'vm',
                 clickOutsideToClose: true,
                 fullscreen: fullScreen,
+                locals: locals
             }).then(function (hive) {
-                //call hiveService and add hive
-                vm.hives.push(hive);
-                //vm.select(hive);
-                vm.openToast("New hive added!");
+                if (mode === 'edit') {
+                    updateHive(hive);
+                } else {
+                    addHive(hive);
+                }
+
             }, function () {
                 console.log('Cancelled');
             });
-        }
+        };
 
         vm.openToast = function (message) {
             $mdToast.show(
@@ -75,6 +81,27 @@
                     .position('top right')
                     .hideDelay(2000)
             );
+        };
+
+        function updateHive(hive) {
+            hiveService.update(hive).then(function (response) {
+                        vm.selected = response.data;
+                        vm.hives[vm.hives.indexOf(hive)].regNo = vm.selected.regNo;
+                        vm.openToast('Hive information updated!');
+                    }, function () {
+                        vm.openToast('Error updating hive!');
+                    });
+        }
+
+        function addHive(hive) {
+            hiveService.create(hive).then(function (response) {
+                        var newHive = response.data;
+                        vm.hives.push(newHive);
+                        vm.select(newHive);
+                        vm.openToast('New hive added!');
+                    }, function () {
+                        vm.openToast('Error creating hive!');
+                    });
         }
     
 

@@ -1,6 +1,6 @@
 <!--<md-content>-->
 <md-tab label="Inspections">
-    <md-card ng-repeat="inspection in vm.inspections | orderBy: '-date':true">
+    <md-card class="animate-repeat" ng-repeat="inspection in vm.inspections | orderBy: '-date':true">
         <md-card-content>
             <p>Date: {{inspection.date | date: format: mediumDate }}</p>
             <p>Type: {{inspection.type}}</p>

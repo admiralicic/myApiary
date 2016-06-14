@@ -1,16 +1,26 @@
 <div flex layout="column">
     <div layout="row">
         <h1>{{vm.hive.regNo}}</h1>
+        <div layout="row" flex layout-align="end center">
+            <md-button ng-click="vm.parent.openHiveDialog($event, 'edit')">
+                <ng-md-icon icon="edit" ></ng-md-icon>
+                <md-tooltip md-direction="right">Edit</md-tooltip>
+            </md-button>
+            <md-button ng-click="">
+                <ng-md-icon icon="delete" ></ng-md-icon>
+                <md-tooltip md-direction="right">Delete</md-tooltip>
+            </md-button>
+        </div>
     </div>
     <div layout="column">
         <div layout-gt-sm="row">
-            <md-content layout="column" flex="30">
-                <p><strong>Location:</strong> {{vm.hive.location}}</p>
-                <p><strong>Queen year:</strong> {{vm.hive.queenYear}}</p>
-            </md-content>
-            <md-content flex layout="row">
-                <p class="apiary-text-multiline"><strong>Note: </strong> {{vm.hive.note}}</p>
-            </md-content>
+            <div layout="column" flex="30">
+                <h3>Location: {{vm.hive.location}}</h3>
+                <h3>Queen year: {{vm.hive.queenYear}}</h3>
+            </div>
+            <div flex layout="row">
+                <p class="apiary-text-multiline">Note: {{vm.hive.note}}</p>
+            </div>
         </div>
         
     </div>

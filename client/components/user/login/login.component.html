@@ -1,13 +1,11 @@
 <navigation></navigation>
 <div layout="column" layout-align="center center" >
     <div class="loginBox md-whiteframe-z4" layout="column">
-        <md-toolbar>
-            <h2 class="md-toolbar-tools">
+        <md-toolbar class="md-toolbar-tools">
                 <span>Login</span>
-            </h2>
         </md-toolbar>
         <md-content class="md-padding" layout="column" >
-            <div role="alert" class="alert alert-danger" ng-show="vm.formError">{{ vm.formError }}</div>
+            <div class="formError" ng-show="vm.formError">{{ vm.formError }}</div>
             <md-input-container>
                 <label>Email</label>
                 <input type="email" ng-model="vm.credentials.email">
@@ -16,7 +14,7 @@
                 <label>Password</label>
                 <input type="password" ng-model="vm.credentials.password">
             </md-input-container>
-            <div layout="row" layout-align="center center" style="padding-top: 20px;">
+            <div layout="row" layout-align="center center">
                 <md-button class="md-raised md-primary" ng-click="vm.onSubmit()">Login</md-button>
                 <div flex>
                     <md-button ng-link="['Register']">Register</md-button>

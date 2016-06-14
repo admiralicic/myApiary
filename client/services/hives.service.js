@@ -31,7 +31,7 @@
         }
 
         function update(hive) {
-            return $http.put('/api/hives/' + hive.id, hive);
+            return $http.put('/api/hives/' + hive._id, hive);
                 
         }
     }

@@ -1,17 +1,13 @@
 <navigation></navigation>
 <div layout="column" layout-align="center center">
     <div class="loginBox md-whiteframe-z4" layout="column">
-        <md-toolbar>
-            <h2 class="md-toolbar-tools">
+        <md-toolbar class="md-toolbar-tools">
                 Registration
-            </h2>
         </md-toolbar>
     <form name="registerForm" ng-submit="vm.onSubmit()">
         <md-content class="md-padding" layout="column">
-        <h4>
-            <span>Already a member? please <a ng-link="['Login']"><em>log in</em></a></span>
-        </h4>
-            <div role="alert" class="alert alert-danger" ng-show="vm.formError">{{ vm.formError }}</div>
+            <p class="md-body-1">Already a member? please <a ng-link="['Login']">log in</a></p>
+            <div class="formError" ng-show="vm.formError">{{ vm.formError }}</div>
             <md-input-container>
                 <label>First name</label>
                 <input type="text" ng-model="vm.credentials.firstName" name="firstName" required>

@@ -12,14 +12,22 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Location</label>
-                        <input ng-model="vm.hive.location" name="location" required>
+                        <md-select ng-model="vm.hive.location" name="location" required>
+                            <md-option ng-repeat="location in vm.locations">
+                                {{location}}
+                            </md-option>
+                        </md-select>
                         <div ng-messages="hiveForm.location.$error">
                             <div ng-message="required">This field is required</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Queen year</label>
-                        <input ng-model="vm.hive.queenYear" name="queenYear" required>
+                        <md-select ng-model="vm.hive.queenYear" name="queenYear" required>
+                            <md-option ng-repeat="year in vm.years">
+                                {{year}}
+                            </md-option>
+                        </md-select>
                         <div ng-messages="hiveForm.queenYear.$error">
                             <div ng-message="required">This field is required</div>
                         </div>
@@ -27,10 +35,7 @@
                 </div>
                     <md-input-container class="md-block" flex>
                         <label>Note</label>
-                        <textarea name="note" ng-model="vm.hive.note" rows="5" required></textarea>
-                        <div ng-messages="hiveForm.note.$error">
-                            <div ng-message="required">This field is required</div>
-                        </div>
+                        <textarea name="note" ng-model="vm.hive.note" rows="5"></textarea>
                     </md-input-container>
             </div>
         </md-dialog-content>

@@ -40,6 +40,6 @@
 
         vm.toggleSideNav = function () {
             $mdSidenav('left').toggle();
-        }        
+        };      
     }
 })();

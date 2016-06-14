@@ -7,7 +7,7 @@ var User = mongoose.model('User');
 module.exports.create = function (req, res) {
 
     var newHive = new Hive({
-        regNo: req.body.regNo,
+        regNo: req.body.regNo.toUpperCase(),
         queenYear: req.body.queenYear,
         location: req.body.location,
         note: req.body.note,
@@ -21,7 +21,6 @@ module.exports.create = function (req, res) {
         res.status(201).json(hive);
     });
 };
-
 
 module.exports.list = function (req, res) {
     Hive.find({ owner: req.payload._id }).sort('regNo').exec(function (err, hives) {
@@ -42,8 +41,8 @@ module.exports.read = function (req, res) {
 
 module.exports.update = function (req, res) {
     var hive = req.hive;
-
-    hive.regNo = req.body.regNo;
+    
+    hive.regNo = req.body.regNo.toUpperCase();
     hive.location = req.body.location;
     hive.queenYear = req.body.queenYear;
     hive.isDeleted = req.body.isDeleted;
