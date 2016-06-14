@@ -9,9 +9,9 @@
 
      <div layout="column" flex id="wrapper">
         <navigation></navigation>
-        <hive-detail hive="vm.selected" layout-padding></hive-detail>
         <md-content flex id="content">
-            <md-tabs md-dynamic-height="" md-stretch-tabs="always">
+        <hive-detail hive="vm.selected"></hive-detail>
+            <md-tabs md-dynamic-height="" md-stretch-tabs="always" md-swipe-content="true">
                     <inspection-list inspections="vm.inspections"></inspection-list>
                 <md-tab label="Extractions">
                     Extractions list component goes here

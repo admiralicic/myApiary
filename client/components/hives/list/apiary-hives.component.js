@@ -11,13 +11,11 @@
     });
 
     HivesController.$inject = [
-        '$mdSidenav',
-        '$mdMedia',
-        '$mdDialog',
-        'authentication',
-        'hiveService',
-        'inspectionService'];
-    function HivesController($mdSidenav, $mdMedia, $mdDialog, authentication, hiveService, inspectionService) {
+        '$mdSidenav', '$mdMedia', '$mdDialog', '$mdToast',
+        'authentication', 'hiveService', 'inspectionService'];
+    function HivesController(
+        $mdSidenav, $mdMedia, $mdDialog, $mdToast,
+        authentication, hiveService, inspectionService) {
         var vm = this;
         vm.hives = [];
         vm.inspections = [];
@@ -63,11 +61,22 @@
             }).then(function (hive) {
                 //call hiveService and add hive
                 vm.hives.push(hive);
-                vm.select(hive);
+                //vm.select(hive);
+                vm.openToast("New hive added!");
             }, function () {
                 console.log('Cancelled');
             });
         }
+
+        vm.openToast = function (message) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(message)
+                    .position('top right')
+                    .hideDelay(2000)
+            );
+        }
+    
 
     }
 })();
