@@ -1,16 +1,44 @@
 <!--<md-content>-->
 <md-tab label="Inspections">
-    <md-card class="animate-repeat" ng-repeat="inspection in vm.inspections | orderBy: '-date':true">
+    <md-card ng-repeat="inspection in vm.inspections | orderBy: '-inspection.date':true">
+        <md-card-title>
+            <md-card-title-text>
+                <div layout="row">
+                            <div class="md-headline" flex>{{inspection.date | date: format: mediumDate }}</div>
+                            <div class="md-headline" flex layout="row" layout-align="end center">{{inspection.type}}</div>
+                        </div>
+            </md-card-title-text>
+        </md-card-title>
         <md-card-content>
-            <p>Date: {{inspection.date | date: format: mediumDate }}</p>
-            <p>Type: {{inspection.type}}</p>
-            <p>Description: {{inspection.description}}</p>
-            <p>Brood frames: {{inspection.broodFrames}}</p>
-            <p>Pollen frames: {{inspection.pollenFrames}}</p>
-            <p>Food frames: {{inspection.foodFrames}}</p>
-            <p>Note: {{inspection.note}}</p>
+            <div layout="column"></div>
+                <!--<div layout="row">
+                    <div flex>{{inspection.date | date: format: mediumDate }}</div>
+                    <div flex>{{inspection.type}}</div>
+                </div>-->
+                
+                <div layout="row" style="margin-top: 10px;">
+                    <span flex="40"></span>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">Food</div>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">Brood</div>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">Pollen</div>
+                </div>
+                <div layout="row">
+                    <span flex="40"></span>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.foodFrames}}</div>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.broodFrames}}</div>
+                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.pollenFrames}}</div>
+                </div>
+                <div layout="column" style="margin-top: 10px;">
+                    <div class="md-subhead" flex>Description</div>
+                    <div class="apiary-note-description">
+                        <p flex>{{inspection.description}}</p>
+                    </div>
+                </div>
+            </div>
         </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Delete</md-button>
+        </md-card-actions>
     </md-card>
 </md-tab>
 <!--</md-content>-->
-                

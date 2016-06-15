@@ -20,8 +20,8 @@
                 .icon('logout', 'images/logout.svg', 24)
                 .icon('menu', 'images/menu.svg', 24);
             
-            $mdThemingProvider.theme('default')
-                .primaryPalette('blue')
-                .accentPalette('orange');
+            $mdThemingProvider.theme('indigo');
+                // .primaryPalette('blue')
+                // .accentPalette('orange');
         }]);
 })();
