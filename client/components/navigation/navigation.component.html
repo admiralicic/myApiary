@@ -1,15 +1,15 @@
 <md-content>
-    <md-toolbar>
+    <md-toolbar >
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Settings" 
             hide-gt-sm ng-show="vm.isLoggedIn" ng-click="vm.toggleSideNav()">
           <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
         <h2>
-          <span>My Apiary</span>
+          My Apiary
         </h2>
         <span flex></span>
-        <h5 ng-show="vm.isLoggedIn">{{vm.currentUser.name }}</h5>
+        <h6 ng-show="vm.isLoggedIn">{{vm.currentUser.name }}</h6>
         <md-button aria-label="Login" ng-if="!vm.isLoggedIn" ng-link="['Register']" >
           Register
         </md-button>

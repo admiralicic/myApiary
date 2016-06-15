@@ -1,27 +1,18 @@
-<div flex layout="column">
-    <div layout="row">
-        <h1>{{vm.hive.regNo}}</h1>
+<div layout="column">
+    <div layout-gt-xs="row">
+        <div layout="column">
+            <h2>{{vm.hive.regNo}}</h2>
+            Location: {{vm.hive.location}} <br/> Queen: {{vm.hive.queenYear}}
+        </div>
         <div layout="row" flex layout-align="end center">
-            <md-button ng-click="vm.parent.openHiveDialog($event, 'edit')">
-                <ng-md-icon icon="edit" ></ng-md-icon>
-                <md-tooltip md-direction="right">Edit</md-tooltip>
+            <md-button class="md-icon-button" ng-click="vm.parent.openHiveDialog($event, 'edit')">
+                <ng-md-icon icon="edit"></ng-md-icon>
+                <md-tooltip md-direction="top">Edit</md-tooltip>
             </md-button>
-            <md-button ng-click="">
-                <ng-md-icon icon="delete" ></ng-md-icon>
-                <md-tooltip md-direction="right">Delete</md-tooltip>
+            <md-button class="md-icon-button" ng-click="vm.parent.showConfirmDialog($event)">
+                <ng-md-icon icon="delete"></ng-md-icon>
+                <md-tooltip md-direction="top">Delete</md-tooltip>
             </md-button>
         </div>
-    </div>
-    <div layout="column">
-        <div layout-gt-sm="row">
-            <div layout="column" flex="30">
-                <h3>Location: {{vm.hive.location}}</h3>
-                <h3>Queen year: {{vm.hive.queenYear}}</h3>
-            </div>
-            <div flex layout="row">
-                <p class="apiary-text-multiline">Note: {{vm.hive.note}}</p>
-            </div>
-        </div>
-        
     </div>
 </div>

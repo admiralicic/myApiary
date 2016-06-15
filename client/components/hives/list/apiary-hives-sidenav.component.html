@@ -25,7 +25,7 @@
         <md-list>
             <md-list-item ng-repeat="hive in vm.hives | filter: vm.searchText | orderBy: 'regNo'"> 
                 <md-button ng-click="vm.select({value: hive})" ng-class="{'selected': hive === vm.selected }">
-                    {{hive.regNo}}
+                    {{hive.regNo}} 
                 </md-button>
             </md-list-item>
         </md-list>

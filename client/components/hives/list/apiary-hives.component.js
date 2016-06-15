@@ -53,6 +53,11 @@
             var locals = {};
             if (mode === 'edit') { locals = vm.selected; }
             
+            var sidenav = $mdSidenav('left');
+            if (sidenav.isOpen()) {
+                sidenav.close();
+            }
+
             $mdDialog.show({
                 templateUrl: 'components/hives/modal/hive.modal.html',
                 parent: angular.element(document.body),
@@ -73,6 +78,21 @@
                 console.log('Cancelled');
             });
         };
+
+        vm.showConfirmDialog = function ($event) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete selected hive?')
+                .textContent('You will not be able to undo this operation.')
+                .targetEvent($event)
+                .ok('Yes')
+                .cancel('Cancel');
+            
+            $mdDialog.show(confirm).then(function () {
+                deleteHive();
+            }, function () {
+                vm.openToast('Operation canceled')
+            })
+        }
 
         vm.openToast = function (message) {
             $mdToast.show(
@@ -102,6 +122,17 @@
                     }, function () {
                         vm.openToast('Error creating hive!');
                     });
+        }
+
+        function deleteHive() {
+            hiveService.deleteHive(vm.selected).then(function () {
+                vm.openToast('Hive deleted');
+                var currentIndex = vm.hives.indexOf(vm.selected);
+                vm.hives.splice(currentIndex, 1);
+                vm.select(vm.hives[currentIndex - 1]);
+            }, function () {
+                vm.openToast('Error deleting hive');
+            });
         }
     
 
