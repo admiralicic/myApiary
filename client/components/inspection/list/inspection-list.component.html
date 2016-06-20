@@ -1,44 +1,28 @@
-<!--<md-content>-->
 <md-tab label="Inspections">
     <md-card ng-repeat="inspection in vm.inspections | orderBy: '-inspection.date':true">
-        <md-card-title>
-            <md-card-title-text>
-                <div layout="row">
-                            <div class="md-headline" flex>{{inspection.date | date: format: mediumDate }}</div>
-                            <div class="md-headline" flex layout="row" layout-align="end center">{{inspection.type}}</div>
-                        </div>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <div layout="column"></div>
-                <!--<div layout="row">
-                    <div flex>{{inspection.date | date: format: mediumDate }}</div>
-                    <div flex>{{inspection.type}}</div>
-                </div>-->
-                
-                <div layout="row" style="margin-top: 10px;">
-                    <span flex="40"></span>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">Food</div>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">Brood</div>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">Pollen</div>
-                </div>
-                <div layout="row">
-                    <span flex="40"></span>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.foodFrames}}</div>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.broodFrames}}</div>
-                    <div class="md-subhead" flex layout="row" layout-align="center center">{{inspection.pollenFrames}}</div>
-                </div>
-                <div layout="column" style="margin-top: 10px;">
-                    <div class="md-subhead" flex>Description</div>
-                    <div class="apiary-note-description">
-                        <p flex>{{inspection.description}}</p>
-                    </div>
-                </div>
+        <md-card-header style="border-bottom: solid 1px; border-color: lightgray;">
+            <md-card-header-text>
+                <span class="md-title">{{inspection.date | date: format: mediumDate }}</span>
+                <span class="md-subhead">{{inspection.type}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <md-card-content style="border-bottom: solid 1px; border-color: lightgray;">
+            <div layout="row">
+                <span flex="40"></span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">Food</span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">Brood</span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">Pollen</span>
             </div>
+            <div layout="row">
+                <span flex="40"></span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">{{inspection.foodFrames}}</span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">{{inspection.broodFrames}}</span>
+                <span class="md-subhead" flex layout="row" layout-align="center center">{{inspection.pollenFrames}}</span>
+            </div>
+            <p class="apiary-text-multiline" flex>{{inspection.description}}</p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Delete</md-button>
+            <md-button>Delete</md-button>
         </md-card-actions>
     </md-card>
 </md-tab>
-<!--</md-content>-->

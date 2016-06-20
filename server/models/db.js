@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
 
-var dbUri = 'mongodb://localhost/myapiary';
-if (process.env.NODE_ENV === 'production') {
-    dbUri = process.env.MONGOLAB_URI;
-}
+// var dbUri = 'mongodb://localhost/myapiary';
+var dbUri = process.env.MONGOLAB_URI;
+// if (process.env.NODE_ENV === 'production') {
+//     dbUri = process.env.MONGOLAB_URI;
+// }
 
 mongoose.connect(dbUri);
 
