@@ -116,7 +116,7 @@ module.exports = function () {
             preprocessors: {}
         };
 
-        options.preprocessors[client + '**/!(*.spec)+(*.js)'] = ['coverage'];
+        options.preprocessors[client + '**/!(*.spec.js)+(*.js)'] = ['coverage'];
         return options;
     }
 };

@@ -29,14 +29,7 @@
         vm.onSubmit = function () {
             authentication.login(vm.credentials)
                 .then(function (response) {
-
-                    // if (vm.returnPage && vm.returnPage !== 'register') {
-                    //     vm.$router.navigateByUrl(vm.returnPage);
-                    // } else {
-                    // $rootScope.$broadcast('login');
                     vm.$router.navigate(['Hives']);
-                    
-                    // }
                 })
                 .catch(function (err) {
                     vm.credentials = {};

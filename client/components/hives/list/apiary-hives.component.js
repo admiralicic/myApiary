@@ -90,9 +90,9 @@
             $mdDialog.show(confirm).then(function () {
                 deleteHive();
             }, function () {
-                vm.openToast('Operation canceled')
-            })
-        }
+                vm.openToast('Operation canceled');
+            });
+        };
 
         vm.openToast = function (message) {
             $mdToast.show(

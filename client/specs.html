@@ -49,14 +49,16 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-component-router/angular_1_router.js"></script>
     <script src="bower_components/angular-component-router/ng_route_shim.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="bower_components/ng-describe/dist/ng-describe.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/sinon/index.js"></script>
     <!-- endbower -->
-
+    <!--<script src="bower_components/sinon/sinon.js"></script>-->
     <!-- inject:js -->
     <script src="/client/app.module.js"></script>
     <script src="/client/services/auth.interceptor.js"></script>
@@ -69,9 +71,9 @@
     <script src="/client/components/root/apiary-root.component.js"></script>
     <script src="/client/components/extraction/list/extraction-list.component.js"></script>
     <script src="/client/components/hives/detail/hive-detail.component.js"></script>
+    <script src="/client/components/hives/list/apiary-hives-sidenav.component.js"></script>
     <script src="/client/components/hives/list/apiary-hives.component.js"></script>
-    <script src="/client/components/hives/modal/edit-hive.modal.controller.js"></script>
-    <script src="/client/components/hives/modal/new-hive.modal.controller.js"></script>
+    <script src="/client/components/hives/modal/hive.modal.controller.js"></script>
     <script src="/client/components/inspection/list/inspection-list.component.js"></script>
     <script src="/client/components/user/login/login.component.js"></script>
     <script src="/client/components/user/registration/registration.component.js"></script>
@@ -85,6 +87,7 @@
 
     <!-- inject:specs:js -->
     <script src="/client/test/getGreeting.spec.js"></script>
+    <script src="/client/test/services/auth.service.spec.js"></script>
     <!-- endinject -->
 
     <!-- inject:templates:js -->
