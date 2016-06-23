@@ -12,30 +12,17 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
     // list of files / patterns to load in the browser
     files: gulpConfig.karma.files,
-    // files: [
-      // 'client/bower_components/angular/angular.js',
-      // 'client/bower_components/angular-mocks/angular-mocks.js',
-      // 'client/bower_components/ng-describe/dist/ng-describe.js',
-      // 'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      // 'client/bower_components/angular-animate/angular-animate.js',
-      // 'client/bower_components/angular-component-router/angular_1_router.js',
-      // 'client/app.module.js',
-      // 'client/core/**/*.js',
-      // 'client/components/**/*.js',
-      // 'client/services/**/*.js',
-      // 'client/test/**/*.spec.js'
-    // ],
-
+    
     // list of files to exclude
     exclude: gulpConfig.karma.exclude,
 
     proxies: {
-            '/': 'http://localhost:8888/'
+            // '/': 'http://localhost:8888/'
         },
     
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    //preprocessors: gulpConfig.karma.preprocessors,
+    // preprocessors: gulpConfig.karma.preprocessors,
 
 
     // test results reporter to use

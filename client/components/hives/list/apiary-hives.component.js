@@ -20,7 +20,7 @@
         vm.hives = [];
         vm.inspections = [];
         vm.formError = '';
-        
+
         vm.$routerOnActivate = function (next, prev) {
             vm.isLoggedIn = authentication.isLoggedIn();
 
@@ -28,7 +28,8 @@
                 vm.$router.navigate(['Home']);
             } else {
                 hiveService.list().then(function (result) {
-                    vm.hives = result.data;
+                    //vm.hives = result.data;
+                    vm.hives = result;
                     vm.selected = vm.hives[0];
                 }, function (error) {
                     console.log(error);
@@ -52,7 +53,7 @@
 
             var locals = {};
             if (mode === 'edit') { locals = vm.selected; }
-            
+
             var sidenav = $mdSidenav('left');
             if (sidenav.isOpen()) {
                 sidenav.close();
@@ -68,12 +69,12 @@
                 fullscreen: fullScreen,
                 locals: locals
             }).then(function (hive) {
+                vm.formError = '';
                 if (mode === 'edit') {
                     updateHive(hive);
                 } else {
                     addHive(hive);
                 }
-
             }, function () {
                 console.log('Cancelled');
             });
@@ -86,7 +87,7 @@
                 .targetEvent($event)
                 .ok('Yes')
                 .cancel('Cancel');
-            
+
             $mdDialog.show(confirm).then(function () {
                 deleteHive();
             }, function () {
@@ -105,23 +106,27 @@
 
         function updateHive(hive) {
             hiveService.update(hive).then(function (response) {
-                        vm.selected = response.data;
-                        vm.hives[vm.hives.indexOf(hive)].regNo = vm.selected.regNo;
-                        vm.openToast('Hive information updated!');
-                    }, function () {
-                        vm.openToast('Error updating hive!');
-                    });
+                // vm.selected = response.data;
+                vm.selected = response;
+                vm.hives[vm.hives.indexOf(hive)].regNo = vm.selected.regNo;
+                vm.openToast('Hive information updated!');
+            }, function () {
+                vm.formError = 'Error updating hive';
+                vm.openToast(vm.formError);
+            });
         }
 
         function addHive(hive) {
             hiveService.create(hive).then(function (response) {
-                        var newHive = response.data;
-                        vm.hives.push(newHive);
-                        vm.select(newHive);
-                        vm.openToast('New hive added!');
-                    }, function () {
-                        vm.openToast('Error creating hive!');
-                    });
+                // var newHive = response.data;
+                var newHive = response;
+                vm.hives.push(newHive);
+                vm.select(newHive);
+                vm.openToast('New hive added!');
+            }, function (response) {
+                vm.formError = 'Error creating hive!';
+                vm.openToast(vm.formError);
+            });
         }
 
         function deleteHive() {
@@ -131,10 +136,11 @@
                 vm.hives.splice(currentIndex, 1);
                 vm.select(vm.hives[currentIndex - 1]);
             }, function () {
-                vm.openToast('Error deleting hive');
+                vm.formError = 'Error deleting hive';
+                vm.openToast(vm.formError);
             });
         }
-    
+
 
     }
 })();

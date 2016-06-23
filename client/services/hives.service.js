@@ -18,23 +18,38 @@
         return service;
 
         function list() {
-            return $http.get('/api/hives');
+            return $http.get('/api/hives')
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function detail(hiveId) {
-            return $http.get('/api/hives/' + hiveId);
+            return $http.get('/api/hives/' + hiveId)
+                .then(function (response) {
+                    return response.data; 
+                });
         }
 
         function create(hive) {
-            return $http.post('/api/hives', hive);
+            return $http.post('/api/hives', hive)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function update(hive) {
-            return $http.put('/api/hives/' + hive._id, hive);
+            return $http.put('/api/hives/' + hive._id, hive)
+                .then(function (response) {
+                    return response.data; 
+                });
         }
 
         function deleteHive(hive) {
-            return $http.delete('/api/hives/' + hive._id);
+            return $http.delete('/api/hives/' + hive._id)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

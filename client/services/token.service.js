@@ -16,11 +16,13 @@
         return service;
 
         function saveToken(token) {
-            $window.localStorage['apiary-token'] = token;
+            // $window.localStorage['apiary-token'] = token;
+            $window.localStorage.setItem('apiary-token', token);
         }
 
         function getToken() {
-            return $window.localStorage['apiary-token'];
+            // return $window.localStorage['apiary-token'];
+           return $window.localStorage.getItem('apiary-token');
         }
 
         function clearToken() {

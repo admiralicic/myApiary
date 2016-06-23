@@ -1,43 +1,66 @@
-describe('authentication', function () {
+describe('service: authentication', function () {
     var authentication;
     var tokenService;
     var $httpBackend;
-    var user = { email: 'admir.alicic@gmail.com', password: 'test' };
+    var $location;
+    var user = { email: 'admir.alicic@gmail.com', password: 'test', firstName: 'Admir', lastName: 'Alicic' };
     //token created on 2016-06-21
     var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzQxODEwMGM4YmI0MDQyMDkwZmQ5OTIiLCJlbWFpbCI6ImFkbWlyLmFsaWNpY0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJBZG1pciIsImxhc3ROYW1lIjoiQWxpY2ljIiwiZXhwIjoxNDY3MDk5NTU0LCJpYXQiOjE0NjY0OTQ3NTR9.r1qYzqw5lUY11Cz7OMOhKvJKce-_obA8dS69pHTyL5g';
 
     beforeEach(function () {
         module('apiaryApp');
-        inject(function (_$httpBackend_, _authentication_, _tokenService_) {
+        inject(function (_$httpBackend_, _authentication_, _tokenService_, _$location_) {
             $httpBackend = _$httpBackend_;
             authentication = _authentication_;
             tokenService = _tokenService_;
+            $location = _$location_;    
         });
     });
 
     describe('login', function () {
 
-        it('should call save token once on success', function () {
-            var mock = sinon.mock(tokenService);
-            mock.expects('saveToken').returns(null);
+         it('should call save token once on success', function () {
+            var stub = sinon.stub(tokenService, 'saveToken');
             $httpBackend.when('POST', '/api/login', user)
-                .respond(200, { data: { token: 'token' } });
+                .respond(200, { token: token }  );
             authentication.login(user);
             $httpBackend.flush();
-            mock.verify();
-            mock.restore();
+            sinon.assert.calledWith(stub, token);
+            stub.restore();
         });
 
-        it('should not call save token on failure', function () {
-            sinon.spy(tokenService, 'saveToken');
-            $httpBackend.when('POST', '/api/login', user)
-                .respond(400);
-            authentication.login(user);
-            $httpBackend.flush();
-            expect(tokenService.saveToken.called).to.be.false;
-            tokenService.saveToken.restore();
-        })
+         it('should not call save token on failure', function () {
+             sinon.spy(tokenService, 'saveToken');
+             $httpBackend.when('POST', '/api/login', user)
+                 .respond(400);
+             authentication.login(user);
+             $httpBackend.flush();
+             expect(tokenService.saveToken.called).to.be.false;
+             tokenService.saveToken.restore();
+         });
+    });
 
+    describe('register', function () {
+
+         it('should call save token once on success', function () {
+            var stub = sinon.stub(tokenService, 'saveToken');
+            $httpBackend.when('POST', '/api/register', user)
+                .respond(200, { token: token }  );
+            authentication.register(user);
+            $httpBackend.flush();
+            sinon.assert.calledWith(stub, token);
+            stub.restore();
+        });
+
+         it('should not call save token on failure', function () {
+             sinon.spy(tokenService, 'saveToken');
+             $httpBackend.when('POST', '/api/register', user)
+                 .respond(400);
+             authentication.register(user);
+             $httpBackend.flush();
+             expect(tokenService.saveToken.called).to.be.false;
+             tokenService.saveToken.restore();
+         });
     });
 
     describe('isLoggedIn', function () {
@@ -111,6 +134,27 @@ describe('authentication', function () {
             stubIsLoggedIn.returns(false);
             
             expect(authentication.currentUser()).to.equal(null);
+        });
+    });
+
+    describe('logout', function () {
+        var stub;
+        beforeEach(function () {
+            stub = sinon.stub(tokenService, 'clearToken');//.returns(function () { });
+        });
+
+        afterEach(function () {
+            stub.restore();
+        });
+
+        it('should navigate to home page after logout', function () {
+            authentication.logout();
+            expect($location.url()).to.equal('/home')
+        });
+
+        it('should call clearToken once', function () {
+            authentication.logout();
+            expect(stub.calledOnce).to.equal(true);
         });
     });
 
