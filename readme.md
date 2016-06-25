@@ -2,7 +2,7 @@
 
 An application indended for beekeepers to log activities at their apiaries.
 
-It is my pet project to test new things, not finished yet.
+It is my pet project to test new ideas, currently under development.
 App is deployed to [Heroku](http://myapiary.herokuapp.com). 
 
 ##Backend
@@ -18,7 +18,7 @@ App is deployed to [Heroku](http://myapiary.herokuapp.com).
 * Angular Component Router
 * Angular Material
 
-##Tests
+##Unit Tests
 * Mocha
 * Chai
 * Sinon

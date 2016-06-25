@@ -1,0 +1,60 @@
+<md-dialog>
+    <form name="inspectionForm" ng-submit="vm.save()">
+        <md-dialog-content>
+            <div layout="column" layout-padding>
+                <div layout="column">
+                    <div layout-gt-sm="row">
+                        <md-datepicker class="date-row" ng-model="vm.inspection.date" name="date" required>
+                            <div ng-messages="inspectionForm.date.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div> 
+                        </md-datepicker>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Type</label>
+                            <md-select ng-model="vm.inspection.type" name="type" required>
+                                <md-option ng-repeat="type in vm.types">
+                                    {{type}}
+                                </md-option>
+                            </md-select>
+                            <div ng-messages="inspectionForm.type.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Brood frames</label>
+                        <input ng-model="vm.inspection.broodFrames" name="broodFrames">
+                        <div ng-messages="inspectionForm.broodFrames.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Pollen frames</label>
+                        <input ng-model="vm.inspection.pollenFrames" name="pollenFrames">
+                        <div ng-messages="inspectionForm.pollenFrames.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Food frames</label>
+                        <input ng-model="vm.inspection.foodFrames" name="foodFrames">
+                        <div ng-messages="inspectionForm.foodFrames.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.cancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="vm.save()" class="md-primary md-raised" ng-disabled="inspectionForm.$invalid">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

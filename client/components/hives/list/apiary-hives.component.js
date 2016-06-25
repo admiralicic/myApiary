@@ -79,6 +79,25 @@
             });
         };
 
+        vm.openInspectionDialog = function ($event) {
+            var fullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+            $mdDialog.show({
+                templateUrl: 'components/inspection/form/inspection-form.modal.html',
+                parent: angular.element(document.body),
+                tergetEvents: $event,
+                controller: 'NewInspectionController',
+                controllerAs: 'vm',
+                clickOutsideToClose: true,
+                fullscreen: fullScreen,
+            }).then(function (inspection) {
+                vm.formError = '';
+                    //addInspection(inspection); 
+                console.log(inspection);
+            }, function () {
+                console.log('Cancelled');
+            });
+        };
+
         vm.showConfirmDialog = function ($event) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to delete selected hive?')

@@ -7,6 +7,9 @@
         controllerAs: 'vm',
         bindings: {
             inspections: '<'
+        },
+        require: {
+            parent: '^apiaryHives'
         }
     });
 
