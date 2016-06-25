@@ -24,7 +24,8 @@
         vm.$onInit = function () {
             vm.isLoggedIn = authentication.isLoggedIn();
             if (!vm.isLoggedIn) {
-                $location.path('/home');
+                vm.$router.navigate(['Home']);
+               // $location.path('/home');
             } else {
                 hiveService.list().then(function (result) {
                     vm.hives = result;
