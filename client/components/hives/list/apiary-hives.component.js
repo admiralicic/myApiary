@@ -91,7 +91,7 @@
                 fullscreen: fullScreen,
             }).then(function (inspection) {
                 vm.formError = '';
-                    //addInspection(inspection); 
+                addInspection(inspection); 
                 console.log(inspection);
             }, function () {
                 console.log('Cancelled');
@@ -156,6 +156,17 @@
             }, function () {
                 vm.formError = 'Error deleting hive';
                 vm.openToast(vm.formError);
+            });
+        }
+
+        function addInspection(inspection) {
+            inspectionService.create(inspection, vm.selected).then(function (newInspection) {
+                vm.openToast('Inspection added!');
+                vm.inspections.push(newInspection)
+            }, function (response) {
+                vm.formError = 'Error creating inspection!';
+                vm.openToast(vm.formError);
+                console.log(response);
             });
         }
 

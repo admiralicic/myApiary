@@ -14,6 +14,20 @@ describe('service : inspectionService', function () {
             "57529f2274bcb080195eb6bd"
         ]
     };
+
+    var inspection = {
+        "_id": "574ecace26ddcb8e5a178fab",
+        "date": "2016-01-13",
+        "description": "Test first inspection",
+        "type": "Regular",
+        "broodFrames": 4,
+        "foodFrames": 5,
+        "pollenFrames": 2,
+        "hive": "574eb48b26ddcb8e5a178fa9",
+        "__v": 0,
+        "isDeleted": false
+    }; 
+
     var $httpBackend;
     var inspectionService;
 
@@ -51,4 +65,17 @@ describe('service : inspectionService', function () {
             expect(result).to.equal('Error');
         });
     });
+
+    describe('create', function () {
+        it('should create inspection', function () {
+            var result;
+            $httpBackend.expectPOST('/api/hives/' + hive._id + '/inspections', inspection)
+                .respond(200, inspection);
+            inspectionService.create(inspection, hive).then(function (response) {
+                result = response;
+            });
+            $httpBackend.flush();
+            expect(result).to.eql(inspection);
+        })
+    })
 });

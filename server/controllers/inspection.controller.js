@@ -10,9 +10,9 @@ module.exports.create = function (req, res) {
         date: req.body.date,
         description: req.body.description,
         type: req.body.type,
-        broodFrames: req.body.broodFrames,
-        foodFrames: req.body.foodFrames,
-        pollenFrames: req.body.pollenFrames,
+        broodFrames: parseInt(req.body.broodFrames) || undefined,
+        foodFrames: parseInt(req.body.foodFrames) || undefined,
+        pollenFrames: parseInt(req.body.pollenFrames) || undefined,
         hive: hive._id,
         note: req.body.note
     });
