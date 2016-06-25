@@ -14,7 +14,10 @@
         return service;
 
         function list(hiveId) {
-            return $http.get('/api/hives/' + hiveId + '/inspections');
+            return $http.get('/api/hives/' + hiveId + '/inspections')
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

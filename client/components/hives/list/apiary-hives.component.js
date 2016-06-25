@@ -40,7 +40,7 @@
         vm.select = function (value) {
             vm.selected = value;
             inspectionService.list(vm.selected._id).then(function (response) {
-                vm.inspections = response.data;
+                vm.inspections = response;
             });
             var sidenav = $mdSidenav('left');
             if (sidenav.isOpen()) {
