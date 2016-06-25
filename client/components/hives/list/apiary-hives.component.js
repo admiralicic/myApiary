@@ -11,31 +11,29 @@
     });
 
     HivesController.$inject = [
-        '$mdSidenav', '$mdMedia', '$mdDialog', '$mdToast',
+        '$mdSidenav', '$mdMedia', '$mdDialog', '$mdToast', '$location',
         'authentication', 'hiveService', 'inspectionService'];
     function HivesController(
-        $mdSidenav, $mdMedia, $mdDialog, $mdToast,
+        $mdSidenav, $mdMedia, $mdDialog, $mdToast, $location,
         authentication, hiveService, inspectionService) {
         var vm = this;
         vm.hives = [];
         vm.inspections = [];
         vm.formError = '';
 
-        vm.$routerOnActivate = function (next, prev) {
+        vm.$onInit = function () {
             vm.isLoggedIn = authentication.isLoggedIn();
-
             if (!vm.isLoggedIn) {
-                vm.$router.navigate(['Home']);
+                $location.path('/home');
             } else {
                 hiveService.list().then(function (result) {
-                    //vm.hives = result.data;
                     vm.hives = result;
-                    vm.selected = vm.hives[0];
+                    vm.select(vm.hives[0]);
                 }, function (error) {
                     console.log(error);
                 });
             }
-        };
+        }
 
         vm.select = function (value) {
             vm.selected = value;
