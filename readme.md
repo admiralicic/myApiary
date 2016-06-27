@@ -1,8 +1,8 @@
 #My Apiary
 
-An application indended for beekeepers to log activities at their apiaries.
+An application intended for beekeepers to log activities at their apiaries.
 
-It is my pet project to test new ideas, currently under development.
+It is my pet project to test new ideas.  Work in progress :)
 App is deployed to [Heroku](http://myapiary.herokuapp.com). 
 
 ##Backend
